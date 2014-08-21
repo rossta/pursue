@@ -1,16 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="ROBOTS" content="NOODP" />
-  <meta name="viewport" content="initial-scale=1" />
-  <title><%= title %></title>
-  <%= stylesheet_link_tag :application, media: "all" %>
-  <%= csrf_meta_tags %>
-</head>
-<body class="<%= body_class %>">
-  <%= render "flashes" -%>
-  <%= yield %>
-  <%= render "javascript" %>
-</body>
+<!DOCTYPE html><!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= title %></title>
+
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Synthesis" %>">
+
+    <%= stylesheet_link_tag :application, media: 'all' %>
+    <%#= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="<%= body_class %>">
+    <header>
+      <%= render 'navigation' %>
+    </header>
+    <section role="banner">
+      <%= yield :banner %>
+    </section>
+    <main role="main" class="">
+      <%= render 'flashes' -%>
+      <%= yield %>
+    </main>
+    <section role="skirt">
+      <%= yield :skirt %>
+    </section>
+    <footer>
+      <%= render 'footer' %>
+    </footer>
+    <%= render 'javascripts' %>
+  </body>
 </html>

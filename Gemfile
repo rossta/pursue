@@ -13,7 +13,6 @@ gem "dalli"
 
 gem "bourbon", "~> 3.2.1"
 gem "neat", "~> 1.5.1"
-gem "foundation-rails"
 gem "coffee-rails"
 gem "jquery-rails"
 gem "sass-rails", "~> 4.0.3"
@@ -37,6 +36,7 @@ gem "devise"
 group :development do
   gem "spring"
   gem "spring-commands-rspec"
+  gem "better_errors"
 end
 
 group :development, :test do
