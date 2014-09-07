@@ -11,14 +11,15 @@
     <title><%= title %></title>
 
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Synthesis" %>">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 
     <%= stylesheet_link_tag :application, media: 'all' %>
-    <%#= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body class="<%= body_class %>">
-    <header>
+    <header role="navigation" class="navigation">
       <%= render 'navigation' %>
     </header>
     <section role="banner">
@@ -26,7 +27,11 @@
     </section>
     <main role="main" class="">
       <%= render 'flashes' -%>
-      <%= yield %>
+      <div class="row">
+        <div class="columns">
+          <%= yield %>
+        </div>
+      </div>
     </main>
     <section role="skirt">
       <%= yield :skirt %>

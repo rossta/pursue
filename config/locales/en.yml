@@ -3,8 +3,12 @@ en:
     formats:
       default:
         "%m/%d/%Y"
+      short:
+        "%a, %b %d"
       with_weekday:
         "%a %m/%d/%y"
+      long_with_weekday:
+        "%A, %B %d, %Y"
 
   time:
     formats:

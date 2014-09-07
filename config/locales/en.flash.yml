@@ -1,0 +1,5 @@
+en:
+  flash:
+    class:
+      notice: "success"
+      alert: "warning"

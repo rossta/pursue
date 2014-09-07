@@ -1,0 +1,23 @@
+.week--list {
+  margin: 0;
+}
+
+.week--header {
+  display: none;
+  @media #{$large-up} {
+    display: block;
+  }
+}
+.week__day--workout {
+  background:#efefef;
+  border: 1px solid white;
+  padding: 0.5rem;
+  min-height:4rem;
+}
+
+.week__day--sport {
+  display: block;
+  @media #{$large-up} {
+    display: none;
+  }
+}

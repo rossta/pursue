@@ -11,8 +11,7 @@ gem "pg"
 gem "redis"
 gem "dalli"
 
-gem "bourbon", "~> 3.2.1"
-gem "neat", "~> 1.5.1"
+gem "foundation-rails"
 gem "coffee-rails"
 gem "jquery-rails"
 gem "sass-rails", "~> 4.0.3"
@@ -32,11 +31,17 @@ gem "rack-timeout"
 gem "rack-protection"
 
 gem "devise"
+gem "virtus"
+
+gem "seed-fu"
 
 group :development do
   gem "spring"
   gem "spring-commands-rspec"
   gem "better_errors"
+  gem 'binding_of_caller'
+  gem 'annotate', '~> 2.6.5'
+  gem 'quiet_assets'
 end
 
 group :development, :test do
@@ -56,6 +61,7 @@ group :test do
   gem "shoulda-matchers", require: false
   gem "timecop"
   gem "webmock"
+  gem "guard-rspec"
 end
 
 group :staging, :production do
