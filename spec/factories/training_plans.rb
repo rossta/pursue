@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :training_plan do
-    title "MyString"
-    summary "MyString"
-    creator nil
+    title "Your Best Half-Ironman"
+    summary "Prepare to set your personal best at the half-iron distance"
+    creator { build(:user) }
   end
 end

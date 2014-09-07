@@ -1,0 +1,12 @@
+<h1>Plan a Workout</h1>
+
+<p>Training Plan: <%= @training_plan.title %></p>
+
+<%= simple_form_for @workout_plan, url: [@training_plan, @workout_plan] do |form| %>
+  <%= form.input :week, min_max: :lookup %>
+  <%= form.input :day, collection: WorkoutPlan.day_names %>
+  <%= form.input :summary %>
+  <%= form.input :notes %>
+
+  <%= form.submit 'Go', class: 'button' %>
+<% end %>

@@ -1,3 +1,5 @@
 <h1>Training Plan: <%= @training_plan.title %></h1>
 
 <p><%= @training_plan.summary %></p>
+
+<%= link_to 'Add workout', new_training_plan_workout_plan_path(@training_plan) %>
