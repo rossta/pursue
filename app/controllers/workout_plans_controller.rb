@@ -35,7 +35,7 @@ class WorkoutPlansController < ApplicationController
   end
 
   def workout_plan_params
-    params.require(:workout_plan).permit(:summary, :notes, :week, :day)
+    params.require(:workout_plan).permit(:summary, :notes, :week, :day, :discipline_name)
   end
 
   def index_params

@@ -1,6 +1,9 @@
 class WorkoutPlan < ActiveRecord::Base
   belongs_to :training_plan
 
+  has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::Discipline"
+  has_one :discipline, through: :discipline_tagging, source: :tag, class_name: "Tag"
+
   enum day: %w[ Monday Tuesday Wednesday Thursday Friday Saturday Sunday ]
 
   validates :week, numericality: { greater_than: 0, less_than_or_equal_to: :max_week }
@@ -11,6 +14,13 @@ class WorkoutPlan < ActiveRecord::Base
 
   def max_week
     training_plan.max_week
+  end
+
+  # def discipline_name
+  delegate :name, to: :discipline, allow_nil: true, prefix: true
+
+  def discipline_name=(name)
+    self.discipline = Tag.find_or_create_by(name: name)
   end
 
   def title

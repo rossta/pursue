@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :tags
+
   resources :training_plans, path: 'training-plans' do
     resources :workout_plans, path: 'workouts'
 
