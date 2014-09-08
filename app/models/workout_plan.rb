@@ -1,7 +1,7 @@
 class WorkoutPlan < ActiveRecord::Base
   belongs_to :training_plan
 
-  has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::Discipline"
+  has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::WorkoutDiscipline"
   has_one :discipline, through: :discipline_tagging, source: :tag, class_name: "Tag"
 
   enum day: %w[ Monday Tuesday Wednesday Thursday Friday Saturday Sunday ]

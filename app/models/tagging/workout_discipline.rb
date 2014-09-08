@@ -1,4 +1,3 @@
-class Tagging::Discipline < Tagging
+class Tagging::WorkoutDiscipline < Tagging
   default_scope { where(context: 'discipline') }
 end
-
