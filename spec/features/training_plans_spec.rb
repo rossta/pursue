@@ -26,13 +26,18 @@ feature 'Training Plans' do
   context 'Athletes' do
     let(:athlete) { create(:user) }
 
-    scenario 'choose a training plan', :pending do
-      create(:training_plan)
+    scenario 'choose a training plan' do
+      create(:training_plan, title: "Your Best Half Ironman")
       login_as athlete
 
       visit training_plans_path
 
-      click_link "Start training"
+      click_link "Your Best Half Ironman" # new_schedule_training_plan_path
+
+      fill_form :schedule, {
+      }
+
+      click_button "Accept"
     end
   end
 
