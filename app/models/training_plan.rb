@@ -4,6 +4,10 @@ class TrainingPlan < ActiveRecord::Base
   has_many :workout_plans
 
   def max_week
-    36
+    24
+  end
+
+  def weeks
+    1..24
   end
 end

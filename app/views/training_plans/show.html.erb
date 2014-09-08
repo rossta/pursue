@@ -2,4 +2,11 @@
 
 <p><%= @training_plan.summary %></p>
 
-<%= link_to 'Add workout', new_training_plan_workout_plan_path(@training_plan) %>
+<%= link_to 'Add workout', new_training_plan_workout_plan_path(@training_plan), class: 'button' %>
+
+<h5>Overview</h5>
+<ul>
+<% @training_plan.weeks.each do |week| %>
+  <li><%= link_to "Week #{week}", training_plan_week_path(@training_plan, week) %></li>
+<% end %>
+</ul>

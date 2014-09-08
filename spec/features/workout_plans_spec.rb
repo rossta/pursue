@@ -26,6 +26,23 @@ feature 'Workout Plan' do
       expect(page).to have_content('5 miles easy')
       expect(page).to have_content('Effort should be really light.')
     end
+
+    scenario 'list all workout plans' do
+      training_plan = create(:training_plan, creator: coach)
+
+      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Swim"))
+      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Bike"))
+
+      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 2, summary: "Rest"))
+
+      visit training_plan_path(training_plan)
+
+      click_link "Week 1"
+
+      expect(page).to have_content("Swim")
+      expect(page).to have_content("Bike")
+      expect(page).to_not have_content("Rest")
+    end
   end
 
 end

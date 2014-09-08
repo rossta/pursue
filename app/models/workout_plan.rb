@@ -14,7 +14,7 @@ class WorkoutPlan < ActiveRecord::Base
   end
 
   def title
-    [training_plan.title, display_week, display_day].reject(&:blank?).join(' ')
+    [display_week, display_day].reject(&:blank?).join(' ')
   end
 
   def display_day
