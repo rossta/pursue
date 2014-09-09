@@ -1,0 +1,20 @@
+<h1>Set up your Season</h1>
+
+<%= simple_form_for @season do |form| %>
+  <%= form.fields_for :season_events do |event_form| %>
+    <%= event_form.input :priority, as: :hidden, input_html: { value: :a } %>
+    <%= event_form.input :event_id, label: "What's your main event?" do %>
+      <%= event_form.select :event_id,
+        Event.active.order(occurs_on: :asc).map { |r| [r.title, r.id, { class: r.id }] },
+        include_blank: true %>
+    <% end %>
+  <% end %>
+
+  <%= form.input :training_plan_id, label: "Choose a training plan", required: false do %>
+    <%= form.select :training_plan_id,
+      TrainingPlan.order(title: :asc, discipline_id: :asc).map { |r| [r.title, r.id, { class: r.id }] },
+      include_blank: true %>
+  <% end %>
+
+  <%= form.submit 'Go', class: "button btn success" %>
+<% end %>

@@ -6,7 +6,7 @@ class Week
   attribute :number, Integer
   attribute :ends_on, Date
   attribute :starts_on, Date
-  attribute :title, String
+  attribute :title, String, default: :default_title
 
   def self.upto(ends_on, num)
     ends_on ||= NullDate.new("TBD")
@@ -41,6 +41,10 @@ class Week
 
   def days
     (starts_on..ends_on)
+  end
+
+  def default_title
+    "Week #{number}"
   end
 
   private

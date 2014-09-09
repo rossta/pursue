@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: workout_plans
+#
+#  id               :integer          not null, primary key
+#  summary          :string(255)
+#  notes            :text
+#  day              :integer
+#  week             :integer
+#  training_plan_id :integer          not null
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 class WorkoutPlan < ActiveRecord::Base
   belongs_to :training_plan
 
@@ -6,14 +20,14 @@ class WorkoutPlan < ActiveRecord::Base
 
   enum day: %w[ Monday Tuesday Wednesday Thursday Friday Saturday Sunday ]
 
-  validates :week, numericality: { greater_than: 0, less_than_or_equal_to: :max_week }
+  validates :week, numericality: { greater_than: 0, less_than_or_equal_to: :total_weeks }
 
   def self.day_names
     days.keys
   end
 
-  def max_week
-    training_plan.max_week
+  def total_weeks
+    training_plan.total_weeks
   end
 
   # def discipline_name

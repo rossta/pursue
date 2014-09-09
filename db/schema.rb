@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908021112) do
+ActiveRecord::Schema.define(version: 20140908114729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: true do |t|
+    t.string   "title"
+    t.date     "occurs_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedules", force: true do |t|
+    t.string   "title"
+    t.integer  "training_plan_id"
+    t.integer  "event_id"
+    t.integer  "owner_id"
+    t.date     "peaks_on"
+    t.date     "starts_on"
+    t.date     "ends_on"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "schedules", ["event_id"], name: "index_schedules_on_event_id", using: :btree
+  add_index "schedules", ["owner_id"], name: "index_schedules_on_owner_id", using: :btree
+  add_index "schedules", ["training_plan_id"], name: "index_schedules_on_training_plan_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
@@ -40,11 +63,13 @@ ActiveRecord::Schema.define(version: 20140908021112) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "training_plans", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",       null: false
     t.string   "summary"
-    t.integer  "creator_id", null: false
+    t.integer  "creator_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "total_weeks"
+    t.integer  "peak_week"
   end
 
   add_index "training_plans", ["creator_id"], name: "index_training_plans_on_creator_id", using: :btree

@@ -1,0 +1,4 @@
+<h1>Welcome <%= current_user.email %></h1>
+
+<%= link_to "Start training", new_schedule_path, class: "small button" %>
+<%= link_to "Create new training plan", new_training_plan_path, class: "small button" %>

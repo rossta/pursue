@@ -1,0 +1,11 @@
+<h1>Set up your Season</h1>
+
+<section class="races">
+  <h2>Races</h2>
+  <%= link_to 'Add an event', new_event_path %>
+  <ul>
+    <% @season.events.each do |event| %>
+      <li><%= link_to event.title, event %></li>
+    <% end %>
+  </ul>
+</section>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :schedules
+
+  resources :events
+
   resources :tags
 
   resources :training_plans, path: 'training-plans' do

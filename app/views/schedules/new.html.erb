@@ -1,0 +1,17 @@
+<h1>Set up your schedule</h1>
+
+<%= simple_form_for @schedule do |form| %>
+  <%= form.input :event_id, label: "What are you training for?" do %>
+    <%= form.select :event_id,
+      Event.order(occurs_on: :asc).map { |r| [r.title, r.id, { class: r.id }] },
+      include_blank: true %>
+  <% end %>
+
+  <%= form.input :training_plan_id, label: "Choose a training plan" do %>
+    <%= form.select :training_plan_id,
+      TrainingPlan.order(title: :asc).map { |r| [r.title, r.id, { class: r.id }] },
+      include_blank: true %>
+  <% end %>
+
+  <%= form.submit 'Go', class: "button btn success" %>
+<% end %>

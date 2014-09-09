@@ -1,0 +1,15 @@
+<h1>Your Season</h1>
+
+<h2>Your Upcoming Events</h2>
+<ul class="large-block-grid-2 small-block-grid-1">
+  <% @season.season_events(include: :event).each do |season_event| %>
+    <li><%= link_to season_event.title, season_event.event %>, <%= season_event.display_priority %></li>
+  <% end %>
+</ul>
+
+<h2>Your Training Schedule: <%= @season.training_plan_title %></h2>
+<ul class="large-block-grid-4 medium-block-grid-2 small-block-grid-1">
+  <% @season.weeks.each do |week| %>
+    <li><%= link_to "Week #{week.number}", season_week_path(@season, week) %>: <%= week.starts_on.to_s(:long) %> <%= week.title %></li>
+  <% end %>
+</ul>

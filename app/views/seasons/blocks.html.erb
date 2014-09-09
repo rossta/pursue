@@ -1,0 +1,12 @@
+<h1>Your Season</h1>
+
+<h2>Your Training Blocks</h2>
+<ul class="large-block-grid-1 small-block-grid-1">
+  <% @season.blocks.each do |block| %>
+    <li class="period-#{block.period}">
+      <h3><%= block.title %> (<%= block.human_duration %> <%= pluralize_without_count block.duration.max, 'week' %>)</h3>
+      <p><%= block.summary %></p>
+    </li>
+  <% end %>
+</ul>
+
