@@ -13,7 +13,7 @@ feature 'Workout Plan' do
       visit new_training_plan_workout_plan_path(training_plan)
 
       fill_form :workout_plan, {
-        discipline: 'Run',
+        discipline: 'run',
         summary: '5 miles easy',
         notes: 'Effort should be really light.',
         week: 1,

@@ -1,5 +1,5 @@
 class WorkoutPlansController < ApplicationController
-  # scoped to training
+  # scoped to training_plan
 
   respond_to :html
 
@@ -12,6 +12,7 @@ class WorkoutPlansController < ApplicationController
       @workout_plans = @workout_plans.where(index_params)
       @title += ": Week #{index_params[:week]}"
     end
+    @workout_plans = @workout_plans.order(week: :asc, day: :asc)
   end
 
   def show
