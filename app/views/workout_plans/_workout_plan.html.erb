@@ -1,6 +1,10 @@
-<section id="<%= dom_id(workout_plan) %>" class="<%= dom_class(workout_plan) %>">
-  <div style="float:right"><%= workout_plan.discipline_name.titleize %></div>
-  <h3><%= workout_plan.display_day %></h3>
-  <div><i><%= workout_plan.summary %></i></div>
-  <div><%= workout_plan.notes %></div>
+<section id="<%= dom_id(workout_plan) %>" class="<%= dom_class(workout_plan) %> row">
+  <div class="columns large-2 small-6"><%= workout_plan.display_day %></div>
+  <div class="columns large-2 small-6">
+    <%= workout_plan.discipline_name.to_s.titleize %>
+  </div>
+  <div class="columns large-8 small-12">
+    <p><i><%= workout_plan.summary %></i></p>
+    <p><%= workout_plan.notes %></p>
+  </div>
 </section>

@@ -2,6 +2,16 @@ require 'rails_helper'
 
 feature 'Training Plans' do
 
+  scenario 'list training plans' do
+    create(:training_plan, title: 'Your Best Triathlon')
+    create(:training_plan, title: 'Your Best Marathon')
+
+    visit training_plans_path
+
+    expect(page).to have_content('Your Best Triathlon')
+    expect(page).to have_content('Your Best Marathon')
+  end
+
   context 'Coaches' do
     let(:coach) { create(:user) }
 

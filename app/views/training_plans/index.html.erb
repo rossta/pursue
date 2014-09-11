@@ -1,0 +1,7 @@
+<h1>Training Plans</h1>
+
+<% @training_plans.each do |training_plan| %>
+  <section>
+    <%= link_to training_plan.title, training_plan %>
+  </section>
+<% end %>

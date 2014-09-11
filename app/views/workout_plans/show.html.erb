@@ -1,5 +1,5 @@
 <h1><%= @workout_plan.title %></h1>
 
-<p><%= @workout_plan.discipline_name %></p>
+<p><%= @workout_plan.discipline_name.to_s.titleize %></p>
 <p><%= @workout_plan.summary %></p>
 <p><%= @workout_plan.notes %></p>

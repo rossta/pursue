@@ -18,6 +18,10 @@ class TrainingPlansController < ApplicationController
     @training_plan = TrainingPlan.find(params[:id])
   end
 
+  def index
+    @training_plans = TrainingPlan.all
+  end
+
   private
 
   def training_plan_params
