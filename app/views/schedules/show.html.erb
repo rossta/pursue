@@ -6,13 +6,14 @@
 <p>Peaks on <%= l @schedule.peaks_on, format: :short %></p>
 <p>Ends on <%= l @schedule.ends_on, format: :short %></p>
 
-<ul>
+<h5>Overview</h5>
+<section class="<%= dom_class(@schedule) %>">
   <% @schedule.weeks.each do |week| %>
-    <li class="week-<%= week.number %>">
-      <h5><%= week.title %>: <%= l week.starts_on, format: :short %></h5>
+    <div class="<%= dom_id(week) %>">
+      <%= link_to "#{week.title} : #{l week.starts_on, format: :short}", schedule_week_path(@schedule, week) %>
       <% if week.number == @schedule.peak_week %>
         <p>Race week - <%= @schedule.event.title %></p>
       <% end %>
-    </li>
+    </div>
   <% end %>
-</ul>
+</section>

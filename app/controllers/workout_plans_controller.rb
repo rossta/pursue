@@ -1,13 +1,11 @@
 class WorkoutPlansController < ApplicationController
-  # scoped to training_plan
+  # scoped to training_plan, schedule
 
   respond_to :html
 
-  before_action :find_training_plan
-
   def index
     @workout_plans = scope
-    @title = @training_plan.title
+    @title = @workout_plan_context.title
     if index_params.any?
       @workout_plans = @workout_plans.where(index_params)
       @title += ": Week #{index_params[:week]}"
@@ -31,8 +29,20 @@ class WorkoutPlansController < ApplicationController
 
   private
 
-  def find_training_plan
-    @training_plan = TrainingPlan.find(params[:training_plan_id])
+  def scope
+    @workout_plan_context = workout_plan_context
+    @workout_plan_context.workout_plans
+  end
+
+  def workout_plan_context
+    case
+    when params[:training_plan_id]
+      @training_plan = TrainingPlan.find(params[:training_plan_id])
+    when params[:schedule_id]
+      @schedule = Schedule.find(params[:schedule_id])
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 
   def workout_plan_params
@@ -43,7 +53,4 @@ class WorkoutPlansController < ApplicationController
     params.slice(:week, :day)
   end
 
-  def scope
-    @training_plan.workout_plans
-  end
 end

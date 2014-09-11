@@ -24,7 +24,8 @@ class Schedule < ActiveRecord::Base
 
   # def duration
   # def peak_week
-  delegate :peak_week, :duration, to: :training_plan, allow_nil: true
+  # def workout_plans
+  delegate :peak_week, :duration, :workout_plans, to: :training_plan, allow_nil: true
 
   def weeks
     training_plan.weeks_following(starts_on)

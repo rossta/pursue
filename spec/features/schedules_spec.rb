@@ -41,7 +41,7 @@ describe 'Schedules' do
       expect(page).to have_content(I18n.l(ends_on, format: :short))
 
       (1..10).each do |week|
-        within(".week-#{week}") do
+        within(".week_#{week}") do
           expect(page).to have_content("Week #{week}")
 
           week_date = (starts_on + (week - 1).weeks)
@@ -49,7 +49,7 @@ describe 'Schedules' do
         end
       end
 
-      within(".week-8") do
+      within(".week_8") do
         expect(page).to have_content("Race week")
       end
     end

@@ -27,7 +27,7 @@ feature 'Workout Plan' do
       expect(page).to have_content('Effort should be really light.')
     end
 
-    scenario 'list workout plans for the week' do
+    scenario 'list workout plans for training plan week' do
       training_plan = create(:training_plan, creator: coach)
 
       training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Swim"))
@@ -36,6 +36,32 @@ feature 'Workout Plan' do
       training_plan.workout_plans.create(attributes_for(:workout_plan, week: 2, summary: "Rest"))
 
       visit training_plan_path(training_plan)
+
+      click_link "Week 1"
+
+      expect(page).to have_content("Swim")
+      expect(page).to have_content("Bike")
+      expect(page).to_not have_content("Rest")
+    end
+
+  end
+
+  context 'Athletes' do
+    let(:coach) { create(:user) }
+    let(:athlete) { create(:user) }
+
+    scenario 'list workout plans for schedule week' do
+      training_plan = create(:training_plan, creator: coach, total_weeks: 6)
+      event         = create(:event, occurs_on: 6.months.from_now.end_of_week)
+
+      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Swim"))
+      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Bike"))
+      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 2, summary: "Rest"))
+
+      schedule = create(:schedule, owner: athlete, event: event, training_plan: training_plan)
+      login_as athlete
+
+      visit schedule_path(schedule)
 
       click_link "Week 1"
 
