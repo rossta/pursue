@@ -1,7 +1,7 @@
 <h1><%= @title %></h1>
 
 <% if @workout_plans.any? %>
-  <%= render @workout_plans %>
+  <%= render @workout_plans, week: @week %>
 <% else %>
   <p>No workouts scheduled for this time period</p>
 <% end %>

@@ -1,5 +1,10 @@
 <section id="<%= dom_id(workout_plan) %>" class="<%= dom_class(workout_plan) %> row">
-  <div class="columns large-2 small-6"><%= workout_plan.display_day %></div>
+  <div class="columns large-2 small-6">
+    <%= workout_plan.display_day %>
+    <% if week.has_dates? %>
+      <%= l week.day_date(workout_plan.day), format: :short %>
+    <% end %>
+  </div>
   <div class="columns large-2 small-6">
     <%= workout_plan.discipline_name.to_s.titleize %>
   </div>

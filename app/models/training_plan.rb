@@ -33,11 +33,15 @@ class TrainingPlan < ActiveRecord::Base
   end
 
   def weeks
-    weeks_following(1.week.from_now.beginning_of_week)
+    weeks_following(nil)
   end
 
   def weeks_following(start_date)
     TrainingWeek.following(start_date, total_weeks)
+  end
+
+  def week_number(number)
+    weeks[number.to_i-1]
   end
 
   # def discipline_name

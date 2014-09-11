@@ -8,7 +8,8 @@ class WorkoutPlansController < ApplicationController
     @title = @workout_plan_context.title
     if index_params.any?
       @workout_plans = @workout_plans.where(index_params)
-      @title += ": Week #{index_params[:week]}"
+      @week          = @workout_plan_context.week_number(index_params[:week])
+      @title         += ": #{@week.title}"
     end
     @workout_plans = @workout_plans.order(week: :asc, day: :asc)
   end

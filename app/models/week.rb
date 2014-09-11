@@ -43,6 +43,16 @@ class Week
     (starts_on..ends_on)
   end
 
+  def has_dates?
+    starts_on.present? && !starts_on.is_a?(NullDate)
+  end
+
+  def day_date(day)
+    # Day(day)
+    enums = %w[ Monday Tuesday Wednesday Thursday Friday Saturday Sunday ]
+    days.to_a[enums.index(day)]
+  end
+
   def default_title
     "Week #{number}"
   end

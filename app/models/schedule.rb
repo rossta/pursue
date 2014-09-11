@@ -31,6 +31,10 @@ class Schedule < ActiveRecord::Base
     training_plan.weeks_following(starts_on)
   end
 
+  def week_number(number)
+    weeks[number.to_i-1]
+  end
+
   private
 
   def set_title
