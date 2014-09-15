@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'ankusa'
+require 'ankusa/file_system_storage'
+require 'pry'
+require 'pry-nav'
+
+storage = Ankusa::FileSystemStorage.new File.expand_path("../training-data", __FILE__)
+cla = Ankusa::NaiveBayesClassifier.new storage
+
+binding.pry
+1
