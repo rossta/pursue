@@ -6,8 +6,8 @@ RSpec.describe Week do
     let(:date) { 1.week.from_now.end_of_week }
     let(:week) { Week.new(number: 1, ends_on: date) }
 
-    it { expect(week.ends_on).to eq(date) }
-    it { expect(week.starts_on).to eq(date - 6.days) }
+    it { expect(week.ends_on).to eq(date.to_date) }
+    it { expect(week.starts_on).to eq((date - 6.days).to_date) }
   end
 
   describe "#starts_on" do
@@ -23,6 +23,25 @@ RSpec.describe Week do
 
     it { expect(week.starts_on).to be_a(NullDate) }
     it { expect(week.ends_on).to be_a(NullDate) }
+  end
+
+  describe "self.of_date" do
+    let(:date) { 2.months.ago }
+
+    it "constructs week containing date" do
+      week = Week.of_date(date)
+      expect(week).to eq(Week.new(starts_on: date.beginning_of_week))
+    end
+  end
+
+  describe "==" do
+    let(:date) { 3.weeks.ago }
+
+    it { expect(Week.new(starts_on: date.beginning_of_week)).to eq(Week.new(starts_on: date.beginning_of_week)) }
+    it { expect(Week.new(ends_on: date.end_of_week)).to eq(Week.new(ends_on: date.end_of_week)) }
+    it { expect(Week.new(starts_on: date.beginning_of_week)).to eq(Week.new(ends_on: date.end_of_week)) }
+    it { expect(Week.new(starts_on: date.beginning_of_week)).to_not eq(Week.new(starts_on: date.end_of_week)) }
+    it { expect(Week.of_date(date)).to_not eq(Week.new(starts_on: (date + 1.week).beginning_of_week)) }
   end
 
   describe "self.upto" do

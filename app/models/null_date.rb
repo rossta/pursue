@@ -49,4 +49,8 @@ NullDate = Struct.new(:text) do
   def mon
     -1
   end
+
+  def to_date
+    self
+  end
 end

@@ -3,10 +3,15 @@ require 'virtus'
 class Week
   include Virtus.model
 
-  attribute :number, Integer
   attribute :ends_on, Date
   attribute :starts_on, Date
+
+  attribute :number, Integer
   attribute :title, String, default: :default_title
+
+  def self.of_date(date)
+    Week.new(starts_on: date.beginning_of_week)
+  end
 
   def self.upto(ends_on, num)
     ends_on ||= NullDate.new("TBD")
@@ -31,12 +36,21 @@ class Week
     end
   end
 
+  def ==(week)
+    week.kind_of?(Week) && starts_on == week.starts_on
+  end
+
+  def to_s
+    "<Week starts_on: #{I18n.l(starts_on, format: :short)}>"
+  end
+  alias_method :inspect, :to_s
+
   def starts_on
-    ensure_date { @starts_on || ends_on - 6.days }
+    ensure_date { @starts_on || ends_on - 6.days }.to_date
   end
 
   def ends_on
-    ensure_date { @ends_on   || starts_on + 6.days }
+    ensure_date { @ends_on   || starts_on + 6.days }.to_date
   end
 
   def days
