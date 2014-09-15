@@ -6,9 +6,6 @@ class Week
   attribute :ends_on, Date
   attribute :starts_on, Date
 
-  attribute :number, Integer
-  attribute :title, String, default: :default_title
-
   def self.of_date(date)
     Week.new(starts_on: date.beginning_of_week)
   end
@@ -18,8 +15,8 @@ class Week
     [].tap do |weeks|
       date = ends_on - (num - 1).weeks
       num.times do |i|
-        week = new(number: i+1, ends_on: date + i.weeks)
-        yield week if block_given?
+        week = new(ends_on: date + i.weeks)
+        yield week, i if block_given?
         weeks << week
       end
     end
@@ -29,8 +26,8 @@ class Week
     starts_on ||= NullDate.new("TBD")
     [].tap do |weeks|
       num.times do |i|
-        week = new(number: i+1, starts_on: starts_on + i.weeks)
-        yield week if block_given?
+        week = new(starts_on: starts_on + i.weeks)
+        yield week, i if block_given?
         weeks << week
       end
     end
@@ -41,7 +38,7 @@ class Week
   end
 
   def to_s
-    "<Week starts_on: #{I18n.l(starts_on, format: :short)}>"
+    "<#{self.class.name} starts_on: #{I18n.l(starts_on, format: :short)}>"
   end
   alias_method :inspect, :to_s
 
@@ -65,10 +62,6 @@ class Week
     # Day(day)
     enums = %w[ Monday Tuesday Wednesday Thursday Friday Saturday Sunday ]
     days.to_a[enums.index(day)]
-  end
-
-  def default_title
-    "Week #{number}"
   end
 
   private

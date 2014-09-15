@@ -56,7 +56,7 @@ RSpec.describe Week do
     end
 
     it "yields each week if block given" do
-      weeks = Week.upto(date, 2) do |w|
+      weeks = TrainingWeek.upto(date, 2) do |w|
         w.title = "foobar"
       end
       expect(weeks.map(&:title)).to eq(%w[foobar foobar])
@@ -75,7 +75,7 @@ RSpec.describe Week do
     end
 
     it "yields each week if block given" do
-      weeks = Week.following(date, 2) do |w|
+      weeks = TrainingWeek.following(date, 2) do |w|
         w.title = "foobar"
       end
       expect(weeks.map(&:title)).to eq(%w[foobar foobar])
