@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'pry'
+require 'pry-nav'
+require 'yaml'
+
+require_relative '../lib/plan_parser/training_peaks'
+
+filename = ARGV.shift
+raise "please specify a FILENAME" if filename.nil?
+
+Day = Struct.new(:date) do
+  def activities
+    @activities ||= []
+  end
+
+  def attributes
+    { date: date, activities: activities }
+  end
+
+  def inspect
+    attributes.to_s
+  end
+end
+
+Activity = Struct.new(:tag, :duration, :distance) do
+  def posts
+    @posts ||= []
+  end
+
+  def attributes
+    { tag: tag, duration: duration, distance: distance, posts: posts }
+  end
+
+  def inspect
+    attributes.to_s
+  end
+end
+
+Post = Struct.new(:label, :notes) do
+  def attributes
+    { label: label, notes: notes }
+  end
+
+  def inspect
+    attributes.to_s
+  end
+end
+
+results = {}
+date = Day.new('header')
+activity = Activity.new('header')
+post = Post.new('header')
+
+PlanParser::TrainingPeaks.each(filename) do |cat, line|
+  # puts [cat, line].inspect
+
+  case cat
+  when 'date'
+    results[line] ||= Day.new(line)
+    date = results[line]
+  when 'tag'
+    activity = Activity.new(line, nil, nil)
+    date.activities << activity
+  when 'duration'
+    activity.duration = line
+  when 'distance'
+    activity.distance = line
+  when 'label'
+    post = Post.new(line, nil)
+    activity.posts << post
+  when 'notes'
+    post.notes = line
+  end
+end
+
+puts results.to_yaml

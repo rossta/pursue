@@ -6,38 +6,25 @@ require 'ankusa/file_system_storage'
 require 'pry'
 require 'pry-nav'
 
+require_relative '../lib/plan_parser/training_peaks'
+
 storage = Ankusa::FileSystemStorage.new File.expand_path("../training-data", __FILE__)
 c = Ankusa::NaiveBayesClassifier.new storage
 
 c.train :skip, ''
 
 filename = ARGV.shift
+raise "please specify a FILENAME" if filename.nil?
 
-# 10_000.times do
+10.times do
+  PlanParser::TrainingPeaks.each(filename) do |cat, line|
+    puts cat, line
+    c.train cat.to_sym, line
+  end
 
-#   File.open(filename, 'r').each_with_index do |line, i|
-#     cat = case line.strip
-#     when "Run", "Other", "Day Off", "Race"
-#       "tag"
-#     when %r{^\s+}, "", "view day", "Links"
-#       "skip"
-#     when "Workout Description:", "Pre Activity Comments:"
-#       "label"
-#     when %r{^Duration}
-#       "duration"
-#     when %r{^Distance}
-#       "distance"
-#     when %r{^\d+\/\d+}
-#       "date"
-#     else
-#       "notes"
-#     end
-#     c.train cat.to_sym, line.strip
-#   end
-
-#   print "."
-#   storage.save
-# end
+  print "."
+  storage.save
+end
 
 File.open(filename, 'r').each do |line|
   puts [line.strip,  c.classify(line.strip), '']
