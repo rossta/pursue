@@ -26,10 +26,10 @@ weeks.each_with_index do |week, i|
     id  = id+1
     summary = week[j]
     discipline_name = summary =~ /rest/i ? 'rest' : 'run'
-    WorkoutPlan.seed(:id, {
+    Entry.seed(:id, {
       id: id,
       week: week_num,
-      day: WorkoutPlan.day_names[j],
+      day: Entry.day_names[j],
       summary: summary,
       training_plan_id: 5,
       discipline_name: discipline_name

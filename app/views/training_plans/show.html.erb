@@ -2,7 +2,7 @@
 
 <p><%= @training_plan.summary %></p>
 
-<%= link_to 'Add workout', new_training_plan_workout_plan_path(@training_plan), class: 'button small' %>
+<%= link_to 'Add workout', new_training_plan_entry_path(@training_plan), class: 'button small' %>
 
 <h5>Overview</h5>
 <section class="<%= dom_class(@training_plan) %>">

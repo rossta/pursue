@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: workout_plans
+# Table name: entries
 #
 #  id               :integer          not null, primary key
 #  summary          :string(255)
@@ -14,6 +14,6 @@
 
 require 'rails_helper'
 
-RSpec.describe WorkoutPlan, :type => :model do
+RSpec.describe Entry, :type => :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

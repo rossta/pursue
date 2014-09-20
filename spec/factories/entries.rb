@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: workout_plans
+# Table name: entries
 #
 #  id               :integer          not null, primary key
 #  summary          :string(255)
@@ -15,11 +15,11 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :workout_plan do
+  factory :entry do
     summary "Run 5 miles"
     notes "Go easy"
 
     week { (1..36).to_a.sample }
-    day { WorkoutPlan.day_names.sample }
+    day { Entry.day_names.sample }
   end
 end

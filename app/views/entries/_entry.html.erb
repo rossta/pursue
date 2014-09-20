@@ -1,0 +1,15 @@
+<section id="<%= dom_id(entry) %>" class="<%= dom_class(entry) %> row">
+  <div class="columns large-2 small-6">
+    <%= entry.display_day %>
+    <% if week.has_dates? %>
+      <%= l week.day_date(entry.day), format: :short %>
+    <% end %>
+  </div>
+  <div class="columns large-2 small-6">
+    <%= entry.discipline_name.to_s.titleize %>
+  </div>
+  <div class="columns large-8 small-12">
+    <p><i><%= entry.summary %></i></p>
+    <p><%= entry.notes %></p>
+  </div>
+</section>

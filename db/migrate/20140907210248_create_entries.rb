@@ -1,6 +1,6 @@
-class CreateWorkoutPlans < ActiveRecord::Migration
+class CreateEntries < ActiveRecord::Migration
   def change
-    create_table :workout_plans do |t|
+    create_table :entries do |t|
       t.string :summary
       t.text :notes
       t.integer :day

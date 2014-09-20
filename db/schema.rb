@@ -16,6 +16,18 @@ ActiveRecord::Schema.define(version: 20140908114729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "entries", force: true do |t|
+    t.string   "summary"
+    t.text     "notes"
+    t.integer  "day"
+    t.integer  "week"
+    t.integer  "training_plan_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "entries", ["training_plan_id"], name: "index_entries_on_training_plan_id", using: :btree
+
   create_table "events", force: true do |t|
     t.string   "title"
     t.date     "occurs_on"
@@ -93,17 +105,5 @@ ActiveRecord::Schema.define(version: 20140908114729) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "workout_plans", force: true do |t|
-    t.string   "summary"
-    t.text     "notes"
-    t.integer  "day"
-    t.integer  "week"
-    t.integer  "training_plan_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "workout_plans", ["training_plan_id"], name: "index_workout_plans_on_training_plan_id", using: :btree
 
 end

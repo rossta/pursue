@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: workout_plans
+# Table name: entries
 #
 #  id               :integer          not null, primary key
 #  summary          :string(255)
@@ -12,7 +12,7 @@
 #  updated_at       :datetime
 #
 
-class WorkoutPlan < ActiveRecord::Base
+class Entry < ActiveRecord::Base
   belongs_to :training_plan
 
   has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::WorkoutDiscipline"

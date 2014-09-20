@@ -10,9 +10,9 @@ feature 'Workout Plan' do
 
       login_as coach
 
-      visit new_training_plan_workout_plan_path(training_plan)
+      visit new_training_plan_entry_path(training_plan)
 
-      fill_form :workout_plan, {
+      fill_form :entry, {
         discipline: 'run',
         summary: '5 miles easy',
         notes: 'Effort should be really light.',
@@ -30,10 +30,10 @@ feature 'Workout Plan' do
     scenario 'list workout plans for training plan week' do
       training_plan = create(:training_plan, creator: coach)
 
-      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Swim"))
-      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Bike"))
+      training_plan.entries.create(attributes_for(:entry, week: 1, summary: "Swim"))
+      training_plan.entries.create(attributes_for(:entry, week: 1, summary: "Bike"))
 
-      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 2, summary: "Rest"))
+      training_plan.entries.create(attributes_for(:entry, week: 2, summary: "Rest"))
 
       visit training_plan_path(training_plan)
 
@@ -54,9 +54,9 @@ feature 'Workout Plan' do
       training_plan = create(:training_plan, creator: coach, total_weeks: 6)
       event         = create(:event, occurs_on: 6.months.from_now.end_of_week)
 
-      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Swim"))
-      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 1, summary: "Bike"))
-      training_plan.workout_plans.create(attributes_for(:workout_plan, week: 2, summary: "Rest"))
+      training_plan.entries.create(attributes_for(:entry, week: 1, summary: "Swim"))
+      training_plan.entries.create(attributes_for(:entry, week: 1, summary: "Bike"))
+      training_plan.entries.create(attributes_for(:entry, week: 2, summary: "Rest"))
 
       schedule = create(:schedule, owner: athlete, event: event, training_plan: training_plan)
       login_as athlete

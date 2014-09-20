@@ -15,7 +15,7 @@
 class TrainingPlan < ActiveRecord::Base
   belongs_to :creator, class_name: 'User'
 
-  has_many :workout_plans
+  has_many :entries
 
   has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::EventDiscipline"
   has_one :discipline, through: :discipline_tagging, source: :tag, class_name: "Tag"
