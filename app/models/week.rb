@@ -2,6 +2,7 @@ require 'virtus'
 
 class Week
   include Virtus.model
+  include Comparable
 
   attribute :ends_on, Date
   attribute :starts_on, Date
@@ -31,6 +32,14 @@ class Week
         weeks << week
       end
     end
+  end
+
+  def succ
+    self.class.new(starts_on: (starts_on + 1.week).to_date)
+  end
+
+  def <=>(week)
+    starts_on <=> week.starts_on
   end
 
   def ==(week)

@@ -44,6 +44,12 @@ RSpec.describe Week do
     it { expect(Week.of_date(date)).to_not eq(Week.new(starts_on: (date + 1.week).beginning_of_week)) }
   end
 
+  describe "succ" do
+    let(:date) { 3.weeks.ago }
+
+    it { expect((Week.new(starts_on: date)..Week.new(starts_on: date + 2.weeks)).to_a.length).to eq(3) }
+  end
+
   describe "self.upto" do
     let(:date) { 10.weeks.from_now.end_of_week.to_date }
 
