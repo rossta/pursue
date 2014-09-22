@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140908114729) do
+ActiveRecord::Schema.define(version: 20140921234239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(version: 20140908114729) do
     t.text     "notes"
     t.integer  "day"
     t.integer  "week"
-    t.integer  "training_plan_id", null: false
+    t.integer  "training_plan_id",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "distance",         default: 0.0
+    t.integer  "duration",         default: 0
   end
 
   add_index "entries", ["training_plan_id"], name: "index_entries_on_training_plan_id", using: :btree

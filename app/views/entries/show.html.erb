@@ -1,7 +1,7 @@
 <h1><%= @entry.title %></h1>
 
-<p><%= @entry.discipline_name.to_s.titleize %></p>
-<p><%#= @entry.duration %></p>
-<p><%#= @entry.distance %></p>
-<p><%= @entry.summary %></p>
-<p><%= @entry.notes %></p>
+<p data-role="discipline"><%= @entry.discipline_name.to_s.titleize %></p>
+<p data-role="duration"><%= @entry.duration_for_unit('min') %></p>
+<p data-role="distance"><%= @entry.distance_for_unit('mi') %></p>
+<p data-role="summary"><%= @entry.summary %></p>
+<p data-role="notes"><%= @entry.notes %></p>

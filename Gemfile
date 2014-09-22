@@ -32,6 +32,7 @@ gem "rack-protection"
 
 gem "devise"
 gem "virtus"
+gem "ruby-units"
 
 gem "seed-fu"
 

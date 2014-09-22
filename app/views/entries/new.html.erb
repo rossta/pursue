@@ -6,6 +6,8 @@
   <%= form.input :week, min_max: :lookup %>
   <%= form.input :day, collection: Entry.day_names %>
   <%= form.input :discipline_name, label: 'Discipline' %>
+  <%= form.input :distance_unit, label: 'Distance' %>
+  <%= form.input :duration_unit, label: 'Duration' %>
   <%= form.input :summary %>
   <%= form.input :notes %>
 

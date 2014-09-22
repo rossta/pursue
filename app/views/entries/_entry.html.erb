@@ -1,6 +1,5 @@
 <section id="<%= dom_id(entry) %>" class="<%= dom_class(entry) %> row">
   <div class="columns large-2 small-6">
-    <%= entry.display_day %>
     <% if week.has_dates? %>
       <%= l week.day_date(entry.day), format: :short %>
     <% end %>

@@ -48,4 +48,37 @@ class Entry < ActiveRecord::Base
   def display_week
     "Week #{week}"
   end
+
+  def distance=(given_distance)
+    @distance_unit = nil
+    super(sprintf("%0.02f", given_distance.round(2)))
+  end
+
+  def distance_unit=(given_distance_unit)
+    Unit(given_distance_unit).tap do |unit|
+      self.distance = unit.convert_to('meters').scalar.to_f
+    end
+  end
+
+  def distance_unit
+    Unit.new(self.distance, 'meters')
+  end
+
+  def distance_for_unit(unit_name)
+    distance_unit.convert_to(unit_name)
+  end
+
+  def duration_unit=(given_duration_unit)
+    Unit(given_duration_unit).tap do |unit|
+      self.duration = unit.convert_to('seconds').scalar.to_i
+    end
+  end
+
+  def duration_unit
+    Unit.new(self.duration, 'seconds')
+  end
+
+  def duration_for_unit(unit_name)
+    duration_unit.convert_to(unit_name)
+  end
 end

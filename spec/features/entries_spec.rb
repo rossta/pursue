@@ -16,8 +16,10 @@ feature 'Workout Plan' do
         discipline: 'run',
         summary: '5 miles easy',
         notes: 'Effort should be really light.',
-        week: 1,
-        day: 'Monday'
+        distance: '5 mi',
+        duration: '48 min',
+        day: 'Monday',
+        week: 1
       }
 
       click_button 'Go'
@@ -25,6 +27,14 @@ feature 'Workout Plan' do
       expect(page).to have_content('Run')
       expect(page).to have_content('5 miles easy')
       expect(page).to have_content('Effort should be really light.')
+
+      within("[data-role=distance]") do
+        expect(page).to have_content("5 mi")
+      end
+
+      within("[data-role=duration]") do
+        expect(page).to have_content("48 min")
+      end
     end
 
     scenario 'list workout plans for training plan week' do

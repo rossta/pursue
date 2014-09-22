@@ -8,8 +8,8 @@ class EntriesController < ApplicationController
     @title = @entry_context.title
     if index_params.any?
       @entries = @entries.where(index_params)
-      @week          = @entry_context.week_number(index_params[:week])
-      @title         += ": #{@week.title}"
+      @week    = @entry_context.week_number(index_params[:week])
+      @title   += ": #{@week.title}"
     end
     @entries = @entries.order(week: :asc, day: :asc)
   end
@@ -47,7 +47,15 @@ class EntriesController < ApplicationController
   end
 
   def entry_params
-    params.require(:entry).permit(:summary, :notes, :week, :day, :discipline_name)
+    params.require(:entry).permit(
+      :summary,
+      :notes,
+      :week,
+      :day,
+      :discipline_name,
+      :distance_unit,
+      :duration_unit
+    )
   end
 
   def index_params
