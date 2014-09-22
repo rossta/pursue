@@ -1,5 +1,5 @@
-Synthesis
-=========
+Pursue
+======
 
 Getting Started
 ---------------

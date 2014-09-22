@@ -7,5 +7,6 @@ Mail.register_interceptor(
 Rails.application.configure do
   # ...
 
-  config.action_mailer.default_url_options = { host: 'staging.synthesis.com' }
+  config.action_mailer.default_url_options = { host: 'pursueapp-staging.com' }
+
 end
