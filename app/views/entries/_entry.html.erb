@@ -2,6 +2,8 @@
   <div class="columns large-2 small-6">
     <% if week.has_dates? %>
       <%= l week.day_date(entry.day), format: :short %>
+    <% else %>
+      <%= entry.display_day %>
     <% end %>
   </div>
   <div class="columns large-2 small-6">

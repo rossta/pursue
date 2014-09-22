@@ -10,6 +10,8 @@
 #  training_plan_id :integer          not null
 #  created_at       :datetime
 #  updated_at       :datetime
+#  distance         :decimal(, )      default(0.0)
+#  duration         :integer          default(0)
 #
 
 class Entry < ActiveRecord::Base

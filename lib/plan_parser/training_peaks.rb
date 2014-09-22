@@ -45,6 +45,10 @@ module PlanParser
         Date.strptime(datename, "%m/%d/%Y")
       end
 
+      def day_of_week
+        %w[Monday Tuesday Wednesday Thursday Friday Saturday Sunday][date.cwday - 1]
+      end
+
       def activities
         @activities ||= []
       end
