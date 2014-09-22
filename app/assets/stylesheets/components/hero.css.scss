@@ -1,0 +1,28 @@
+.hero {
+  text-align: center;
+  margin: 2em auto;
+
+  @media #{$medium-up} {
+    width: 50%;
+  }
+}
+
+.hero--intro {
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.hero--action {
+  font-weight: bold;
+}
+
+.hero--form-inputs {
+  text-align: left;
+  @media #{$medium-up} {
+    padding: 0 1em;
+  }
+}
+
+.hero--form-actions {
+  padding-top: 1em;
+}

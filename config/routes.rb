@@ -19,5 +19,15 @@ Rails.application.routes.draw do
 
   get "dashboard", to: 'dashboard#show', as: :dashboard, constraints: Routes::LoggedInConstraint.new
 
-  devise_for :users
+  get 'accounts/start', to: redirect('start')
+
+  devise_for :users, skip: [:sessions], path: 'accounts', path_names: { sign_up: 'start' }
+  as :user do
+    get 'resume' => 'devise/sessions#new', :as => :new_user_session
+    post 'resume' => 'devise/sessions#create', :as => :user_session
+    match 'pause' => 'devise/sessions#destroy', :as => :destroy_user_session,
+      :via => Devise.mappings[:user].sign_out_via
+
+    get 'start' => 'devise/registrations#new', :as => :sign_up
+  end
 end
