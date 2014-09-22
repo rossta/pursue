@@ -40,5 +40,47 @@ module PlanParser
 
     end
 
+    Day = Struct.new(:datename) do
+      def date
+        Date.strptime(datename, "%m/%d/%Y")
+      end
+
+      def activities
+        @activities ||= []
+      end
+
+      def attributes
+        { date: date, activities: activities }
+      end
+
+      def inspect
+        attributes.to_s
+      end
+    end
+
+    Activity = Struct.new(:tag, :duration, :distance) do
+      def posts
+        @posts ||= []
+      end
+
+      def attributes
+        { tag: tag, duration: duration, distance: distance, posts: posts }
+      end
+
+      def inspect
+        attributes.to_s
+      end
+    end
+
+    Post = Struct.new(:label, :notes) do
+      def attributes
+        { label: label, notes: notes }
+      end
+
+      def inspect
+        attributes.to_s
+      end
+    end
+
   end
 end

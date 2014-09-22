@@ -10,43 +10,9 @@ require_relative '../lib/plan_parser/training_peaks'
 filename = ARGV.shift
 raise "please specify a FILENAME" if filename.nil?
 
-Day = Struct.new(:date) do
-  def activities
-    @activities ||= []
-  end
-
-  def attributes
-    { date: date, activities: activities }
-  end
-
-  def inspect
-    attributes.to_s
-  end
-end
-
-Activity = Struct.new(:tag, :duration, :distance) do
-  def posts
-    @posts ||= []
-  end
-
-  def attributes
-    { tag: tag, duration: duration, distance: distance, posts: posts }
-  end
-
-  def inspect
-    attributes.to_s
-  end
-end
-
-Post = Struct.new(:label, :notes) do
-  def attributes
-    { label: label, notes: notes }
-  end
-
-  def inspect
-    attributes.to_s
-  end
-end
+Day = PlanParser::TrainingPeaks::Day
+Activity = PlanParser::TrainingPeaks::Activity
+Post = PlanParser::TrainingPeaks::Post
 
 results = {}
 date = Day.new('header')
@@ -58,7 +24,8 @@ PlanParser::TrainingPeaks.each(filename) do |cat, line|
 
   case cat
   when 'date'
-    results[line] ||= Day.new(line)
+    year = line =~ %r{\A1\/} ? '2015' : '2014'
+    results[line] ||= Day.new("#{line}/#{year}")
     date = results[line]
   when 'tag'
     activity = Activity.new(line, nil, nil)
