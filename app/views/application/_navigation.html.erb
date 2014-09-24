@@ -13,12 +13,13 @@
       <ul class="right">
         <li class="active"><%= link_to 'Dashboard', dashboard_path %></li>
         <li class="has-dropdown">
-          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+          <%= link_to 'Settings', edit_user_registration_path %>
           <ul class="dropdown">
             <li><a href="#">First link in dropdown</a></li>
             <li class="active"><a href="#">Active link in dropdown</a></li>
           </ul>
         </li>
+        <li class=""><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
       </ul>
     <% else %>
       <ul class="right">

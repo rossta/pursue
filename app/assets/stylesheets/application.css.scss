@@ -1,9 +1,12 @@
 @charset 'utf-8';
 
 @import 'foundation_and_overrides';
+@import 'mixins/content_title';
+
 @import 'layout';
 @import 'navigation';
 
 @import 'components/hero';
+@import 'components/index_page';
 @import 'features/home';
 @import 'features/schedule';

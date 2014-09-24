@@ -25,13 +25,11 @@
     <section role="banner">
       <%= yield :banner %>
     </section>
-    <main role="main" class="">
-      <%= render 'flashes' -%>
-      <div class="row">
-        <div class="columns">
-          <%= yield %>
-        </div>
-      </div>
+    <%= render 'flashes' -%>
+    <main role="main" class="<%= main_class %>">
+      <section class="columns">
+        <%= yield %>
+      </section>
     </main>
     <section role="skirt">
       <%= yield :skirt %>

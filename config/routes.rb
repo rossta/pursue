@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  root to: "home#index"
+
+  get "dashboard", to: 'dashboard#show', as: :user_root, constraints: Routes::LoggedInConstraint.new
+
   concern :calendar do
     get 'week/:week', to: 'entries#index', as: :week
     get 'week/:week/day/:day', to: 'entries#index', as: :week_day
@@ -14,10 +18,6 @@ Rails.application.routes.draw do
   resources :events
 
   resources :tags
-
-  root to: "home#index"
-
-  get "dashboard", to: 'dashboard#show', as: :dashboard, constraints: Routes::LoggedInConstraint.new
 
   get 'accounts/start', to: redirect('start')
 
