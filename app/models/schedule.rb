@@ -35,6 +35,10 @@ class Schedule < ActiveRecord::Base
     weeks[number.to_i-1]
   end
 
+  def training_plan
+    super || NullTrainingPlan.instance
+  end
+
   private
 
   def set_title

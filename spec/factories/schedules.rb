@@ -27,5 +27,6 @@ FactoryGirl.define do
     starts_on { 1.month.from_now.beginning_of_week }
     peaks_on { |s| s.starts_on - 1.day + 8.weeks }
     ends_on { |s| s.peaks_on + 2.weeks }
+
   end
 end
