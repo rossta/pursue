@@ -13,7 +13,7 @@ describe 'Schedules' do
 
       login_as athlete
 
-      visit user_root_path
+      visit dashboard_path
 
       click_link "Start training"
 

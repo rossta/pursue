@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  get "dashboard", to: 'dashboard#show', as: :user_root, constraints: Routes::LoggedInConstraint.new
+  get "dashboard", to: 'dashboard#show', as: :dashboard, constraints: Routes::LoggedInConstraint.new
 
   concern :calendar do
     get 'week/:week', to: 'entries#index', as: :week

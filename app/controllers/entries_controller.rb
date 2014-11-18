@@ -59,7 +59,7 @@ class EntriesController < ApplicationController
   end
 
   def index_params
-    params.slice(:week, :day)
+    params.permit(:week, :day).slice(:week, :day)
   end
 
 end

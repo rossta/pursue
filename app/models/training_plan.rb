@@ -60,4 +60,8 @@ class TrainingPlan < ActiveRecord::Base
   def ends_on(peaks_on)
     peaks_on + (total_weeks - peak_week).weeks
   end
+
+  def exists?
+    persisted?
+  end
 end

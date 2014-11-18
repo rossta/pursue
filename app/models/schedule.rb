@@ -21,6 +21,12 @@ class Schedule < ActiveRecord::Base
 
   before_create :set_title
   before_save :set_dates
+  after_save :set_entry_dates, if: :should_set_entry_dates?
+
+  has_many :schedule_entries, dependent: :destroy
+  has_many :entries, through: :schedule_entries
+
+  scope :active, -> { where("ends_on >= ?", Date.today) }
 
   # def duration
   # def peak_week
@@ -64,6 +70,22 @@ class Schedule < ActiveRecord::Base
 
     self.starts_on = training_plan.starts_on(self.peaks_on)
     self.ends_on = training_plan.ends_on(self.peaks_on)
+  end
+
+  def set_entry_dates
+    raise "Cannot set entry dates without schedule start date" unless self.starts_on
+
+    self.schedule_entries = []
+    self.training_plan.entries.each do |entry|
+      self.schedule_entries.create do |ed|
+        ed.entry = entry
+        ed.occurs_on = entry.date_relative_to(self.starts_on)
+      end
+    end
+  end
+
+  def should_set_entry_dates?
+    self.starts_on_changed? && self.training_plan.exists?
   end
 
 end

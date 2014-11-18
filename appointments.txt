@@ -1,0 +1,11 @@
+ot,Room 203,Healthcare Info Session,2014,6,17,14,0
+mo,Room 207,Budget Oversight Meeting,21,17,14,30
+mo,Room 205,Poker Night,15,20,0
+ot,Auditorium 1,CEO Address to Company,2014,3,26,14,0
+mo,Room 208,VP Meeting,10,7,0
+ot,Room 316,Rengineering Rollout,2014,6,16,9,30
+mo,Room 203,Staff Meeting,3,8,30
+ot,Room 207,Quarterly Analysis,2014,4,1,10,0
+ot,Room 207,Quarterly Analysis,2014,7,1,10,0
+ot,Room 207,Quarterly Analysis,2014,10,1,10,0
+ot,Room 207,Year End Analysis,2014,1,2,10,0

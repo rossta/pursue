@@ -8,4 +8,8 @@ class NullTrainingPlan
   def weeks_following(*args)
     []
   end
+
+  def exists?
+    false
+  end
 end

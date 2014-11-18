@@ -66,4 +66,27 @@ RSpec.describe Entry, :type => :model do
       expect(subject.duration_for_unit('min').round).to eq(Unit('60 min'))
     end
   end
+
+  describe "#date_relative_to" do
+    it "returns null date" do
+      subject.day = nil
+      subject.week = nil
+      expect(subject.date_relative_to(Date.today)).to eq NullDate.new
+
+      subject.day = 2
+      expect(subject.date_relative_to(Date.today)).to eq NullDate.new
+
+      subject.week = 3
+      subject.day = nil
+      expect(subject.date_relative_to(Date.today)).to eq NullDate.new
+    end
+
+    it "returns relative date to week and day" do
+      subject.day = 2
+      subject.week = 3
+      given_date = Date.today
+      expected_date = given_date + 2.weeks + 2.days
+      expect(subject.date_relative_to(given_date)).to eq expected_date
+    end
+  end
 end

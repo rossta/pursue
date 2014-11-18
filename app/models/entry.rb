@@ -20,6 +20,8 @@ class Entry < ActiveRecord::Base
   has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::WorkoutDiscipline"
   has_one :discipline, through: :discipline_tagging, source: :tag, class_name: "Tag"
 
+  has_many :schedule_entries
+
   enum day: %w[ Monday Tuesday Wednesday Thursday Friday Saturday Sunday ]
 
   validates :week, numericality: { greater_than: 0, less_than_or_equal_to: :total_weeks }
@@ -82,5 +84,18 @@ class Entry < ActiveRecord::Base
 
   def duration_for_unit(unit_name)
     duration_unit.convert_to(unit_name)
+  end
+
+  def date_relative_to(date)
+    return NullDate.new unless week.present? && day.present?
+    date.to_date + week_index.weeks + day_index.days
+  end
+
+  def week_index
+    week.presence && (week - 1)
+  end
+
+  def day_index
+    day.presence && Entry.days[day]
   end
 end

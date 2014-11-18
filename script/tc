@@ -8,6 +8,3 @@ require 'pry-nav'
 
 storage = Ankusa::FileSystemStorage.new File.expand_path("../training-data", __FILE__)
 cla = Ankusa::NaiveBayesClassifier.new storage
-
-binding.pry
-1
