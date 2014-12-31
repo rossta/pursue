@@ -11,8 +11,6 @@ gem 'pg'
 gem 'redis'
 gem 'dalli'
 
-# gem 'responders', '~> 2.0'
-
 gem 'foundation-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -29,7 +27,6 @@ gem 'high_voltage'
 gem 'i18n-tasks'
 gem 'simple_form'
 
-gem 'rack-timeout'
 gem 'rack-protection'
 
 gem 'devise'
