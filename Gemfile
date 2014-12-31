@@ -1,70 +1,72 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-ruby "2.1.5"
+ruby '2.1.5'
 
-gem "rails", "4.1.5"
+gem 'rails', '~> 4.2'
 
-gem "unicorn"
+gem 'unicorn'
 
-gem "pg"
+gem 'pg'
 
-gem "redis"
-gem "dalli"
+gem 'redis'
+gem 'dalli'
 
-gem "foundation-rails"
-gem "coffee-rails"
-gem "jquery-rails"
-gem "sass-rails", "~> 4.0.3"
-gem "uglifier"
-gem "bower-rails"
+# gem 'responders', '~> 2.0'
 
-gem "email_validator"
-gem "recipient_interceptor"
+gem 'foundation-rails'
+gem 'coffee-rails'
+gem 'jquery-rails'
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier'
+gem 'bower-rails'
 
-gem "title"
-gem "flutie"
-gem "high_voltage"
-gem "i18n-tasks"
-gem "simple_form"
+gem 'email_validator'
+gem 'recipient_interceptor'
 
-gem "rack-timeout"
-gem "rack-protection"
+gem 'title'
+gem 'flutie'
+gem 'high_voltage'
+gem 'i18n-tasks'
+gem 'simple_form'
 
-gem "devise"
-gem "virtus"
-gem "ruby-units"
+gem 'rack-timeout'
+gem 'rack-protection'
 
-gem "seed-fu"
+gem 'devise'
+gem 'virtus'
+gem 'ruby-units'
+
+gem 'seed-fu'
 
 group :development do
-  gem "spring"
-  gem "spring-commands-rspec"
-  gem "better_errors"
+  gem 'spring'
+  gem 'spring-commands-rspec'
+  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'annotate', '~> 2.6.5'
   gem 'quiet_assets'
 end
 
 group :development, :test do
-  gem "awesome_print"
-  gem "dotenv-rails"
-  gem "factory_girl_rails"
-  gem "pry-rails"
-  gem "pry-byebug"
-  gem "rspec-rails", "~> 3.1.0"
+  gem 'awesome_print'
+  gem 'dotenv-rails'
+  gem 'factory_girl_rails'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'rspec-rails', '~> 3.1.0'
 end
 
 group :test do
-  gem "poltergeist"
-  gem "database_cleaner"
-  gem "formulaic"
-  gem "launchy"
-  gem "shoulda-matchers", require: false
-  gem "timecop"
-  gem "webmock"
-  gem "guard-rspec"
+  gem 'poltergeist'
+  gem 'database_cleaner'
+  gem 'formulaic'
+  gem 'launchy'
+  gem 'shoulda-matchers', require: false
+  gem 'timecop'
+  gem 'webmock'
+  gem 'guard-rspec'
 end
 
 group :staging, :production do
-  gem "newrelic_rpm", ">= 3.7.3"
+  gem 'newrelic_rpm', '>= 3.7.3'
 end

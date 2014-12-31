@@ -13,12 +13,16 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @schedule = schedule_scope.create do |s|
+    @schedule = schedule_scope.build do |s|
       s.event = scheduled_event
       s.training_plan = scheduled_training_plan
     end
 
-    respond_with @schedule
+    if @schedule.save
+      redirect_to @schedule, notice: "Success!"
+    else
+      render :new
+    end
   end
 
   private

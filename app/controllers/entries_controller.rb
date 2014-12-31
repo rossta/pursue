@@ -23,9 +23,13 @@ class EntriesController < ApplicationController
   end
 
   def create
-    @entry = scope.create(entry_params)
+    @entry = scope.build(entry_params)
 
-    respond_with [@training_plan, @entry]
+    if @entry.save
+      redirect_to [@training_plan, @entry], notice: "Success"
+    else
+      render :new
+    end
   end
 
   private
