@@ -5,7 +5,7 @@ Endurance athletes (i.e., marathoners, triathletes) love training and racing.
 They don't love planning so much. With Pursue, athletes spend less time
 planning, and more time moving.
 
-[![Dependency Status](https://gemnasium.com/rossta/pursue.svg)](https://gemnasium.com/rossta/pursue)
+[![Build Status](https://travis-ci.org/rossta/pursue.svg)](https://travis-ci.org/rossta/pursue) [![Dependency Status](https://gemnasium.com/rossta/pursue.svg)](https://gemnasium.com/rossta/pursue)
 
 Guidelines
 ----------
