@@ -1,24 +1,10 @@
-before_install:
-  - "echo '--colour' > ~/.rspec"
-  - "echo 'gem: --no-document' > ~/.gemrc"
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-before_script:
-  - cp .sample.env .env
-  
-  - psql -c 'create database "synthesis_test";' -U postgres
-  
-branches:
-  only:
-    - master
-cache:
-  - bundler
-language:
-  - ruby
-notifications:
-  email:
-    - false
+language: ruby
+
 rvm:
-  - 2.1.2
-addons:
-  postgresql: "9.3"
+  - 2.1
+
+bundler_args: --without development --retry=3 --jobs=3
+
+env:
+  global:
+    - SECRET_KEY_BASE='cf2269c15ea5d65da91628aed1bd625bce1b32251a2b093f'
