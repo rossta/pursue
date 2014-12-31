@@ -15,10 +15,9 @@
 #
 
 class Entry < ActiveRecord::Base
-  belongs_to :training_plan
+  include Concerns::Categorizable
 
-  has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::WorkoutDiscipline"
-  has_one :discipline, through: :discipline_tagging, source: :tag, class_name: "Tag"
+  belongs_to :training_plan
 
   has_many :schedule_entries
 
@@ -26,19 +25,46 @@ class Entry < ActiveRecord::Base
 
   validates :week, numericality: { greater_than: 0, less_than_or_equal_to: :total_weeks }
 
+  has_one_category :period
+  has_one_category :discipline
+  has_one_category :zone
+  has_many_categories :abilities
+
+  # has_one :period_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::Period"
+  # has_one :period, through: :period_tagging, source: :tag, class_name: "Tag"
+  #
+  # has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::Discipline"
+  # has_one :discipline, through: :discipline_tagging, source: :tag, class_name: "Tag"
+  #
+  # has_many :ability_taggings, as: :taggable, dependent: :destroy, class_name: "Tagging::Ability"
+  # has_many :abilities, through: :ability_taggings, source: :tag, class_name: "Tag"
+  #
+  # has_one :strength_ability_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::StrengthAbility"
+  # has_one :strength_ability, through: :strength_ability_tagging, source: :tag, class_name: "Tag"
+  #
+  # has_one :zone_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::Zone"
+  # has_one :zone, through: :zone_tagging, source: :tag, class_name: "Tag"
+  #
+  # def discipline_name
+  # delegate :name, to: :discipline, allow_nil: true, prefix: true
+  #
+  # def discipline_name=(name)
+  #   self.discipline = Tag.find_or_create_by(name: name)
+  # end
+  #
+  # # def period_name
+  # delegate :name, to: :period, allow_nil: true, prefix: true
+  #
+  # def period_name=(name)
+  #   self.period = Tag.find_or_create_by(name: name)
+  # end
+
   def self.day_names
     days.keys
   end
 
   def total_weeks
     training_plan.total_weeks
-  end
-
-  # def discipline_name
-  delegate :name, to: :discipline, allow_nil: true, prefix: true
-
-  def discipline_name=(name)
-    self.discipline = Tag.find_or_create_by(name: name)
   end
 
   def title

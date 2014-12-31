@@ -13,6 +13,6 @@
 #  created_at    :datetime
 #
 
-class Tagging::EventDiscipline < Tagging
-  default_scope { where(context: 'discipline') }
+class Tagging::Sport < Tagging
+  default_scope { where(context: 'sport') }
 end

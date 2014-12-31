@@ -10,4 +10,6 @@
 #
 
 class Event < ActiveRecord::Base
+  include Concerns::Categorizable
+  has_one_category :distance
 end

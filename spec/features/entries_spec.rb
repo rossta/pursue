@@ -6,6 +6,7 @@ feature 'Workout Plan' do
     let(:coach) { create(:user) }
 
     scenario 'create workout plan' do
+      Tag.seed_fixtures(:disciplines)
       training_plan = create(:training_plan, creator: coach)
 
       login_as coach

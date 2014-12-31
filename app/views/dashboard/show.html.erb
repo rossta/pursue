@@ -3,7 +3,7 @@
 
 <div>Today
   <hr>
-<ul class="large-block-grid-12">
+<ul class="">
   <% @dashboard.entries_today.each do |entry| %>
     <li>
       <%= entry.summary %>
@@ -13,9 +13,12 @@
   </ul>
 </div>
 
-<ul class="large-block-grid-12">
+<ul class="large-block-grid-1">
   <% current_user.schedules.active.each do |schedule| %>
-    <li><%= link_to schedule.title, schedule %></li>
+    <li>
+      <h3><%= link_to schedule.title, schedule %></h3>
+      <p>Race date: <%= schedule.peaks_on.to_s(:long) %></p>
+    </li>
   <% end %>
 </ul>
 

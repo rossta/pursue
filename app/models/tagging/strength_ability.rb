@@ -13,6 +13,6 @@
 #  created_at    :datetime
 #
 
-class Tagging::WorkoutDiscipline < Tagging
-  default_scope { where(context: 'discipline') }
+class Tagging::StrengthAbility < Tagging
+  default_scope { where(context: 'strength_ability') }
 end

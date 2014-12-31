@@ -13,12 +13,13 @@
 #
 
 class TrainingPlan < ActiveRecord::Base
+  include Concerns::Categorizable
+
+  has_one_category :discipline
+
   belongs_to :creator, class_name: 'User'
 
   has_many :entries
-
-  has_one :discipline_tagging, as: :taggable, dependent: :destroy, class_name: "Tagging::EventDiscipline"
-  has_one :discipline, through: :discipline_tagging, source: :tag, class_name: "Tag"
 
   def total_weeks
     read_attribute(:total_weeks) || 36
@@ -44,13 +45,6 @@ class TrainingPlan < ActiveRecord::Base
 
   def week_number(number)
     weeks[number.to_i-1]
-  end
-
-  # def discipline_name
-  delegate :name, to: :discipline, allow_nil: true, prefix: true
-
-  def discipline_name=(name)
-    self.discipline = Tag.find_or_create_by(name: name)
   end
 
   def starts_on(peaks_on)

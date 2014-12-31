@@ -59,7 +59,7 @@ class EntriesController < ApplicationController
   end
 
   def index_params
-    params.permit(:week, :day).slice(:week, :day)
+    params.permit(:schedule_id, :training_plan_id, :week, :day).slice(:week, :day)
   end
 
 end
