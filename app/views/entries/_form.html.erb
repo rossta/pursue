@@ -1,0 +1,23 @@
+<h1>Plan a Workout</h1>
+
+<p>Training Plan: <%= @training_plan.title %></p>
+
+<%= simple_form_for @entry, url: [@training_plan, @entry] do |form| %>
+  <%= form.input :summary %>
+  <%= form.input :week, min_max: :lookup %>
+  <%= form.input :day, collection: Entry.day_names %>
+  <%= form.input :discipline_name, label: 'Discipline', collection: Tag::DISCIPLINES %>
+  <%= form.input :zone_name, label: 'Zone', collection: Tag::ZONES.map { |t| [t.titleize,t] } %>
+  <%= form.input :period_name, label: 'Period', collection: Tag::PERIODS.map { |t| [t.titleize,t] } %>
+  <%= form.input :ability_names, label: 'Abilities',
+    collection: Tag::ABILITIES.map { |t| [t.titleize,t]},
+    input_html: { multiple: true, style: 'height:6rem' } %>
+  <%= form.input :strength_ability_names, label: 'Abilities',
+    collection: Tag::STRENGTH_ABILITIES.map { |t| [t.titleize,t]},
+    input_html: { multiple: true, style: 'height:6rem' } %>
+  <%= form.input :distance_unit, label: 'Distance' %>
+  <%= form.input :duration_unit, label: 'Duration' %>
+  <%= form.input :notes %>
+
+  <%= form.submit 'Go', class: 'button' %>
+<% end %>

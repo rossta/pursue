@@ -13,8 +13,18 @@ class Tag < ActiveRecord::Base
 
   def self.seed_fixtures(context = :fixtures)
     self.const_get(context.to_s.upcase).each do |name|
-      find_or_create_by(name: name)
+      find_or_create_by(name: normalize_category_name(name))
     end
+  end
+
+  def self.normalize_category_name(name)
+    sep = '-'
+    normalized = ActiveSupport::Inflector.transliterate(name)
+    normalized = normalized.strip.downcase.underscore.dasherize
+    normalized = normalized.gsub(%r{\s+}, sep)
+    normalized = normalized.gsub(%r{^[^\w|\.]*|-$}, '')   # normalize start/end chars
+    normalized = normalized.gsub(%r{#{sep}{2,}}, sep)     # remove repeated -
+    normalized = normalized.gsub(%r{\.{2,}}, '.')         # remove repeated .
   end
 
   def to_s
@@ -32,7 +42,7 @@ class Tag < ActiveRecord::Base
   ZONES = %w[ zone-1 zone-2 zone-3 zone-4 zone-5 ]
 
   ABILITIES = %w[
-    aerobic-endurance
+  aerobic-endurance
     speed-skills
     force
     muscular-endurance
@@ -41,7 +51,7 @@ class Tag < ActiveRecord::Base
   ]
 
   STRENGTH_ABILITIES = %w[
-    anatomical-adaptation
+  anatomical-adaptation
     maximum-transition
     maximum-strength
     strength-maintenance

@@ -14,7 +14,7 @@ module Concerns
         delegate :name, to: tag_name, allow_nil: true, prefix: true
 
         define_method("#{tag_name}_name=") do |value|
-          self.send("#{tag_name}=", Tag.find_by(name: value))
+          self.send("#{tag_name}=", Tag.find_by(name: self.class.normalize_category_name(value)))
         end
       end
 
@@ -24,12 +24,22 @@ module Concerns
         has_many tagging_name, as: :taggable, dependent: :destroy, class_name: "Tagging::#{name.to_s.classify}"
         has_many tag_name, through: tagging_name, source: :tag, class_name: "Tag"
 
-        # def discipline_name
-        delegate :name, to: tag_name, allow_nil: true, prefix: true
-
-        define_method("#{tag_name}_names=") do |values|
-          self.send("#{tag_name}=", Tag.find_all_by(name: values))
+        # def discipline_names
+        define_method("#{tag_name.to_s.singularize}_names") do
+          self.send(tag_name).pluck('name')
         end
+
+        define_method("#{tag_name.to_s.singularize}_names=") do |values|
+          self.send("#{tag_name}=", Tag.where(name: self.class.normalize_category_names(values)))
+        end
+      end
+
+      def normalize_category_names(names)
+        names.reject(&:blank?).map { |n| normalize_category_name(n) }
+      end
+
+      def normalize_category_name(name)
+        Tag.normalize_category_name(name)
       end
 
     end

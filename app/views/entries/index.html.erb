@@ -1,7 +1,16 @@
 <h1><%= @title %></h1>
 
+<p>
+  <% if @training_plan %>
+    <%= link_to "Add workout", new_training_plan_entry_path(@training_plan, index_params), class: "button round small" %>
+  <% elsif @schedule %>
+    <%= link_to "View training plan", training_plan_path(@schedule.training_plan) %>
+  <% end %>
+</p>
+
 <% if @entries.any? %>
   <%= render @entries, week: @week %>
 <% else %>
   <p>No workouts scheduled for this time period</p>
 <% end %>
+
