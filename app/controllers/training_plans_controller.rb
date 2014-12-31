@@ -7,11 +7,15 @@ class TrainingPlansController < ApplicationController
   end
 
   def create
-    @training_plan = TrainingPlan.create(training_plan_params) do |tp|
+    @training_plan = TrainingPlan.new(training_plan_params) do |tp|
       tp.creator = current_user
     end
 
-    respond_with @training_plan
+    if @training_plan.save
+      redirect_to @training_plan, notice: "Success!"
+    else
+      render :new
+    end
   end
 
   def show

@@ -16,7 +16,7 @@ gem 'dalli'
 gem 'foundation-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 gem 'uglifier'
 gem 'bower-rails'
 
