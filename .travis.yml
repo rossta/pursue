@@ -8,3 +8,11 @@ bundler_args: --without development --retry=3 --jobs=3
 env:
   global:
     - SECRET_KEY_BASE='cf2269c15ea5d65da91628aed1bd625bce1b32251a2b093f'
+    - RAILS_EVN='test'
+
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database pursue_test;' -U postgres
+  - bundle exec rake db:migrate --trace
+script:
+  - bundle exec rake
