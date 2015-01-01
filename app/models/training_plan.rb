@@ -40,11 +40,29 @@ class TrainingPlan < ActiveRecord::Base
   def weeks_following(start_date)
     TrainingWeek.following(start_date, total_weeks) do |w, i|
       w.number = i + 1
+      w.title = periodized_week_title(w)
     end
   end
 
   def week_number(number)
     weeks[number.to_i-1]
+  end
+
+  def periodized_week_title(week)
+    period = period_name(week.number) || "Prep"
+    "#{period}: #{week.title}"
+  end
+
+  def period_name(week_number)
+    remaining = peak_week - week_number
+    case
+    when remaining < 0  then "Transition"
+    when remaining == 0 then "Race"
+    when remaining < 3  then "Peak"
+    when remaining < 11 then "Build"
+    when remaining < 23 then "Base"
+    else "Prep"
+    end
   end
 
   def starts_on(peaks_on)

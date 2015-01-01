@@ -16,28 +16,28 @@ ActiveRecord::Schema.define(version: 20141012154735) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "entries", force: true do |t|
-    t.string   "summary"
+  create_table "entries", force: :cascade do |t|
+    t.string   "summary",          limit: 255
     t.text     "notes"
     t.integer  "day"
     t.integer  "week"
-    t.integer  "training_plan_id",               null: false
+    t.integer  "training_plan_id",                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "distance",         default: 0.0
-    t.integer  "duration",         default: 0
+    t.string   "distance",                     default: "0 m"
+    t.string   "duration",                     default: "0 s"
   end
 
   add_index "entries", ["training_plan_id"], name: "index_entries_on_training_plan_id", using: :btree
 
-  create_table "events", force: true do |t|
-    t.string   "title"
+  create_table "events", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.date     "occurs_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "schedule_entries", force: true do |t|
+  create_table "schedule_entries", force: :cascade do |t|
     t.integer  "schedule_id"
     t.integer  "entry_id"
     t.date     "occurs_on"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20141012154735) do
   add_index "schedule_entries", ["entry_id"], name: "index_schedule_entries_on_entry_id", using: :btree
   add_index "schedule_entries", ["schedule_id"], name: "index_schedule_entries_on_schedule_id", using: :btree
 
-  create_table "schedules", force: true do |t|
-    t.string   "title"
+  create_table "schedules", force: :cascade do |t|
+    t.string   "title",            limit: 255
     t.integer  "training_plan_id"
     t.integer  "event_id"
     t.integer  "owner_id"
@@ -64,13 +64,13 @@ ActiveRecord::Schema.define(version: 20141012154735) do
   add_index "schedules", ["owner_id"], name: "index_schedules_on_owner_id", using: :btree
   add_index "schedules", ["training_plan_id"], name: "index_schedules_on_training_plan_id", using: :btree
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.string   "tag_type"
+    t.string   "tag_type",      limit: 255
     t.integer  "taggable_id"
-    t.string   "taggable_type"
+    t.string   "taggable_type", limit: 255
     t.integer  "tagger_id"
-    t.string   "tagger_type"
+    t.string   "tagger_type",   limit: 255
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
@@ -81,16 +81,16 @@ ActiveRecord::Schema.define(version: 20141012154735) do
   add_index "taggings", ["taggable_id", "taggable_type"], name: "index_taggings_on_taggable_id_and_taggable_type", using: :btree
   add_index "taggings", ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type", using: :btree
 
-  create_table "tags", force: true do |t|
-    t.string "name"
+  create_table "tags", force: :cascade do |t|
+    t.string "name", limit: 255
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "training_plans", force: true do |t|
-    t.string   "title",       null: false
-    t.string   "summary"
-    t.integer  "creator_id",  null: false
+  create_table "training_plans", force: :cascade do |t|
+    t.string   "title",       limit: 255, null: false
+    t.string   "summary",     limit: 255
+    t.integer  "creator_id",              null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "total_weeks"
@@ -99,21 +99,21 @@ ActiveRecord::Schema.define(version: 20141012154735) do
 
   add_index "training_plans", ["creator_id"], name: "index_training_plans_on_creator_id", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

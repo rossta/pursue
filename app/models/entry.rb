@@ -25,6 +25,9 @@ class Entry < ActiveRecord::Base
 
   validates :week, numericality: { greater_than: 0, less_than_or_equal_to: :total_weeks }
 
+  # validates :duration, duration_unit: true
+  # validates :distance, distance_unit: true
+
   has_one_category :period
   has_one_category :discipline
   has_one_category :zone
@@ -60,37 +63,40 @@ class Entry < ActiveRecord::Base
   end
 
   def distance=(given_distance)
-    @distance_unit = nil
-    super(sprintf("%0.02f", given_distance.round(2)))
+    self.distance_unit = given_distance
+    super
   end
 
-  def distance_unit=(given_distance_unit)
-    Unit(given_distance_unit).tap do |unit|
-      self.distance = unit.convert_to('meters').scalar.to_f
-    end
+  def distance_unit=(given_distance)
+    @distance_unit = Unit(given_distance)
   end
 
   def distance_unit
-    Unit.new(self.distance, 'meters')
+    @distance_unit || Unit.new(self.distance)
   end
 
-  def distance_for_unit(unit_name)
+  def distance_for_unit(unit_name = 'm')
     distance_unit.convert_to(unit_name)
   end
+  alias :distance_in :distance_for_unit
 
-  def duration_unit=(given_duration_unit)
-    Unit(given_duration_unit).tap do |unit|
-      self.duration = unit.convert_to('seconds').scalar.to_i
-    end
+  def duration=(given_duration)
+    self.duration_unit = given_duration
+    super
+  end
+
+  def duration_unit=(given_duration)
+    @duration_unit = Unit(given_duration)
   end
 
   def duration_unit
-    Unit.new(self.duration, 'seconds')
+    Unit.new(self.duration)
   end
 
-  def duration_for_unit(unit_name)
+  def duration_for_unit(unit_name = 's')
     duration_unit.convert_to(unit_name)
   end
+  alias :duration_in :duration_for_unit
 
   def date_relative_to(date)
     return NullDate.new unless week.present? && day.present?

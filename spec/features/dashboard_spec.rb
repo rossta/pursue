@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Athlete Dashboard' do
+RSpec.feature 'Athlete Dashboard' do
 
   context 'Athletes' do
     let(:athlete) { create(:user) }

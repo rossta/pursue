@@ -1,6 +1,6 @@
 class AddColumnsToEntries < ActiveRecord::Migration
   def change
-    add_column :entries, :distance, :decimal, default: 0.0
-    add_column :entries, :duration, :integer, default: 0
+    add_column :entries, :distance, :string, default: '0 m'
+    add_column :entries, :duration, :string, default: '0 s'
   end
 end

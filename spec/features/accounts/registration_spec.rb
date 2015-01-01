@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Registration' do
+RSpec.feature 'Registration' do
 
   scenario 'Visitor starts new account' do
     visit root_path

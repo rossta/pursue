@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Schedules' do
+RSpec.describe 'Schedules' do
 
   context 'Athletes' do
     let(:athlete) { create(:user) }

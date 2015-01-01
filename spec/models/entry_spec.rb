@@ -19,50 +19,45 @@ require 'rails_helper'
 RSpec.describe Entry, :type => :model do
 
   describe "#distance" do
-    it "enforces to decimal scale (cm) on meters" do
-      subject.distance = 4.345
-      expect(subject.distance).to eq(4.35)
+    it "updates distance unit (meters)" do
+      subject.distance = '400 cm'
+      expect(subject.distance_in('m')).to eq('4 m')
     end
   end
 
   describe "#distance_unit" do
-    it "converts given distance unit string to meters" do
-      subject.distance_unit = '3 mi' # 4828.03 meters
-      expect(subject.distance_for_unit('mi').round).to eq(Unit('3 mi'))
-      expect(subject.distance).to eq(Unit('3 mi').convert_to('meters').scalar.to_f.round(2))
-    end
-
     it "converts given distance unit object string to meters" do
-      subject.distance_unit = Unit('3 mi')
+      subject.distance = '3 mi'
       expect(subject.distance_for_unit('mi').round).to eq(Unit('3 mi'))
-      expect(subject.distance).to eq(Unit('3 mi').convert_to('meters').scalar.to_f.round(2))
+      expect(subject.distance_in('m').round).to eq(Unit('4828 m'))
     end
 
     it "infers distance unit from distance" do
       expect(subject.distance_for_unit('mi')).to eq(Unit('0 mi'))
 
-      subject.distance = 4828.03 # meters
+      subject.distance = '4828 m' # meters
       expect(subject.distance_for_unit('mi').round).to eq(Unit('3 mi'))
+    end
+  end
+
+  describe "#duration" do
+    it "updates duration unit (s)" do
+      subject.duration = '1 hr'
+      expect(subject.duration_in('s')).to eq('3600 s')
     end
   end
 
   describe "#duration_unit" do
     it "converts given duration unit string to minutes" do
-      subject.duration_unit = '48 min' # 4828.03 meters
+      subject.duration = '48 min' # 4828.03 meters
       expect(subject.duration_for_unit('min').round).to eq(Unit('48 min'))
-      expect(subject.duration).to eq(Unit('48 min').convert_to('seconds').scalar.to_i)
-    end
-
-    it "converts given duration unit object string to meters" do
-      subject.duration_unit = Unit('48 min')
-      expect(subject.duration_for_unit('min').round).to eq(Unit('48 min'))
-      expect(subject.duration).to eq(Unit('48 min').convert_to('seconds').scalar.to_i)
+      expect(subject.duration_in('s').round).to eq(Unit('48 min').convert_to('seconds').to_s)
     end
 
     it "infers duration unit from duration" do
       expect(subject.duration_for_unit('min')).to eq(Unit('0 min'))
 
-      subject.duration = 3600 # meters
+      subject.duration = '3600 s'
       expect(subject.duration_for_unit('min').round).to eq(Unit('60 min'))
     end
   end

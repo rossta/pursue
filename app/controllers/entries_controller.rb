@@ -74,8 +74,8 @@ class EntriesController < ApplicationController
       :discipline_name,
       :zone_name,
       :period_name,
-      :distance_unit,
-      :duration_unit,
+      :distance,
+      :duration,
       ability_names: [],
       strength_ability_names: []
     )

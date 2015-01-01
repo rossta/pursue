@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Training Plans' do
+RSpec.feature 'Training Plans' do
 
   scenario 'list training plans' do
     create(:training_plan, title: 'Your Best Triathlon')

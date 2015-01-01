@@ -15,8 +15,8 @@
   <%= form.input :strength_ability_names, label: 'Abilities',
     collection: Tag::STRENGTH_ABILITIES.map { |t| [t.titleize,t]},
     input_html: { multiple: true, style: 'height:6rem' } %>
-  <%= form.input :distance_unit, label: 'Distance' %>
-  <%= form.input :duration_unit, label: 'Duration' %>
+  <%= form.input :distance, label: 'Distance' %>
+  <%= form.input :duration, label: 'Duration' %>
   <%= form.input :notes %>
 
   <%= form.submit 'Go', class: 'button' %>

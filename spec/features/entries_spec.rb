@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Workout Plan' do
+RSpec.feature 'Workout Plan' do
 
   context 'Coaches' do
     let(:coach) { create(:user) }
@@ -48,13 +48,12 @@ feature 'Workout Plan' do
 
       visit training_plan_path(training_plan)
 
-      click_link "Week 1"
+      click_link "Prep: Week 1"
 
       expect(page).to have_content("Swim")
       expect(page).to have_content("Bike")
       expect(page).to_not have_content("Rest")
     end
-
   end
 
   context 'Athletes' do

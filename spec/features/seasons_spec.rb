@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Seasons', :pending do
+RSpec.feature 'Seasons', :pending do
   let(:user) { create(:user) }
 
   scenario "Start new season from dashboard" do
