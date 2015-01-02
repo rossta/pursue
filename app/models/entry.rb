@@ -10,8 +10,8 @@
 #  training_plan_id :integer          not null
 #  created_at       :datetime
 #  updated_at       :datetime
-#  distance         :decimal(, )      default(0.0)
-#  duration         :integer          default(0)
+#  distance         :string           default("0 m")
+#  duration         :string           default("0 s")
 #
 
 class Entry < ActiveRecord::Base
@@ -31,6 +31,7 @@ class Entry < ActiveRecord::Base
   has_one_category :period
   has_one_category :discipline
   has_one_category :zone
+  has_one_category :mode
   has_many_categories :abilities
   has_many_categories :strength_abilities
 
@@ -112,10 +113,12 @@ class Entry < ActiveRecord::Base
   end
 
   def to_unit(value)
+    return nil if value.blank?
+
     Unit(extract_last_unit_value(value))
   end
 
   def extract_last_unit_value(value)
-   value.split(%r{\s?-\s?}).last.strip
+    value.split(%r{\s?-\s?}).last.strip
   end
 end

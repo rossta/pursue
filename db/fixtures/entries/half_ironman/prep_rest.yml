@@ -1,0 +1,140 @@
+---
+- summary: Prep rest strength
+  day: Monday
+  distance:
+  duration: "1:00"
+  period_name: prep
+  discipline_name: strength
+  zone_name:
+  mode_name: rest
+  ability_names:
+  strength_ability_names:
+  - maximum-transition
+- summary: Prep rest swim
+  day: Tuesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep rest run
+  day: Tuesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep rest bike
+  notes: X-train alternative
+  day: Wednesday
+  distance:
+  duration: 0:45 - 1:15
+  period_name: prep
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep rest swim
+  notes: Test alternative
+  day: Thursday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep rest run
+  day: Thursday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep rest bike
+  notes: Test
+  day: Friday
+  distance:
+  duration: "1:00"
+  period_name: prep
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep rest strength
+  day: Friday
+  distance:
+  duration: "1:00"
+  period_name: prep
+  discipline_name: strength
+  zone_name:
+  mode_name: rest
+  ability_names:
+  strength_ability_names:
+  - maximum-transition
+- summary: Prep rest swim
+  day: Saturday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep rest run
+  notes: Test
+  day: Saturday
+  distance:
+  duration: 1:00 - 1:30
+  period_name: prep
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep rest bike
+  notes: X-train alternative
+  day: Sunday
+  distance:
+  duration: 1:30 - 2:00
+  period_name: prep
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:

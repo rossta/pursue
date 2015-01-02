@@ -10,8 +10,8 @@
 #  training_plan_id :integer          not null
 #  created_at       :datetime
 #  updated_at       :datetime
-#  distance         :decimal(, )      default(0.0)
-#  duration         :integer          default(0)
+#  distance         :string           default("0 m")
+#  duration         :string           default("0 s")
 #
 
 require 'rails_helper'
@@ -75,6 +75,13 @@ RSpec.describe Entry, :type => :model do
 
       expect(subject.duration_for_unit('min').round).to eq(Unit('48 min'))
       expect(subject.duration_in('s').round).to eq(Unit('48 min').convert_to('seconds'))
+    end
+
+    it "handles hour notation" do
+      subject.duration = '1:00'
+
+      expect(subject.duration_for_unit('min').round).to eq(Unit('60 min'))
+      expect(subject.duration_in('s').round).to eq(Unit('60 min').convert_to('seconds'))
     end
   end
 

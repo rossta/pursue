@@ -41,17 +41,20 @@ class Tag < ActiveRecord::Base
 
   ZONES = %w[ zone-1 zone-2 zone-3 zone-4 zone-5 ]
 
+  MODES = %w[ train rest ]
+
   ABILITIES = %w[
-  aerobic-endurance
+    aerobic-endurance
     speed-skills
     force
     muscular-endurance
     anaerobic-endurance
     power
+    test
   ]
 
   STRENGTH_ABILITIES = %w[
-  anatomical-adaptation
+    anatomical-adaptation
     maximum-transition
     maximum-strength
     strength-maintenance

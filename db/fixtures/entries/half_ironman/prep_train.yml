@@ -1,0 +1,149 @@
+---
+- summary: Prep train strength
+  day: Monday
+  distance:
+  duration: "1:00"
+  period_name: prep
+  discipline_name: strength
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+  - anatomical-adaptation
+  - maximum-transition
+- summary: Prep train swim
+  day: Tuesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep train run
+  day: Tuesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep train bike
+  notes: X-train alternative
+  day: Wednesday
+  distance:
+  duration: 0:45 - 1:15
+  period_name: prep
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep train strength
+  day: Wednesday
+  distance:
+  duration: "1:00"
+  period_name: prep
+  discipline_name: strength
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+  - anatomical-adaptation
+  - maximum-transition
+- summary: Prep train swim
+  day: Thursday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep train run
+  day: Thursday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep train bike
+  notes: X-train alternative
+  day: Friday
+  distance:
+  duration: 0:45 - 1:15
+  period_name: prep
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep train strength
+  day: Friday
+  distance:
+  duration: "1:00"
+  period_name: prep
+  discipline_name: strength
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+  - anatomical-adaptation
+  - maximum-transition
+- summary: Prep train swim
+  day: Saturday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: prep
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep train run
+  notes: X-train alternative
+  day: Saturday
+  distance:
+  duration: 1:00 - 1:30
+  period_name: prep
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Prep train bike
+  notes: X-train alternative
+  day: Sunday
+  distance:
+  duration: 1:30 - 2:00
+  period_name: prep
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:

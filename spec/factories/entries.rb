@@ -10,8 +10,8 @@
 #  training_plan_id :integer          not null
 #  created_at       :datetime
 #  updated_at       :datetime
-#  distance         :decimal(, )      default(0.0)
-#  duration         :integer          default(0)
+#  distance         :string           default("0 m")
+#  duration         :string           default("0 s")
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
