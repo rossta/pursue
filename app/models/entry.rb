@@ -68,11 +68,11 @@ class Entry < ActiveRecord::Base
   end
 
   def distance_unit=(given_distance)
-    @distance_unit = Unit(given_distance)
+    @distance_unit = to_unit(given_distance)
   end
 
   def distance_unit
-    @distance_unit || Unit.new(self.distance)
+    @distance_unit || to_unit(self.distance)
   end
 
   def distance_for_unit(unit_name = 'm')
@@ -86,11 +86,11 @@ class Entry < ActiveRecord::Base
   end
 
   def duration_unit=(given_duration)
-    @duration_unit = Unit(given_duration)
+    @duration_unit = to_unit(given_duration)
   end
 
   def duration_unit
-    Unit.new(self.duration)
+    to_unit(self.duration)
   end
 
   def duration_for_unit(unit_name = 's')
@@ -109,5 +109,13 @@ class Entry < ActiveRecord::Base
 
   def day_index
     day.presence && Entry.days[day]
+  end
+
+  def to_unit(value)
+    Unit(extract_last_unit_value(value))
+  end
+
+  def extract_last_unit_value(value)
+   value.split(%r{\s?-\s?}).last.strip
   end
 end
