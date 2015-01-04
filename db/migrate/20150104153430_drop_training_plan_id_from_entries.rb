@@ -1,4 +1,4 @@
-class DropTrainingPlainIdFromEntries < ActiveRecord::Migration
+class DropTrainingPlanIdFromEntries < ActiveRecord::Migration
   def up
     remove_column :entries, :training_plan_id
   end

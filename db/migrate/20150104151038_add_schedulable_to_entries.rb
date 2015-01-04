@@ -1,4 +1,4 @@
-class MakeEntriesScheduleable < ActiveRecord::Migration
+class AddSchedulableToEntries < ActiveRecord::Migration
   def change
     change_table(:entries) do |t|
       t.column :occurs_on, :date
