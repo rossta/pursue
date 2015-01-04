@@ -1,17 +1,25 @@
 start_id = 1
+periodization = TrainingPlan::Friel.new
 
-yaml = YAML.load_file(Rails.root.join 'db/fixtures/entries/half_ironman/prep_train.yml')
-yaml.each_with_index do |attrs, i|
-  1.upto(3).each do |week|
-    start_id += 1
-    seeds = attrs.merge(id: start_id, week: week, training_plan_id: 5).reject { |k,v| v.blank? }
+periodization.each do |week|
+  basename = week.to_a # number, name, chunk, mode
+  basename.shift
+  basename = basename.map(&:downcase).join("_") # name_version_mode
+  file = Rails.root.join "db/fixtures/entries/half_ironman/#{basename}.yml"
+
+  if !File.exist?(file)
+    warn "Skipping file not found: #{file}"
+    next
+  end
+
+  YAML.load_file(file).each_with_index do |attrs, i|
+    start_id += i
+    seeds = attrs.merge(
+      id: start_id,
+      week: week.number,
+      training_plan_id: 1
+    ).reject { |k,v| v.blank? }
+
     Entry.seed(:id, seeds)
   end
-end
-yaml = YAML.load_file(Rails.root.join 'db/fixtures/entries/half_ironman/prep_rest.yml')
-week = 4
-yaml.each_with_index do |attrs, i|
-  start_id += 1
-  seeds = attrs.merge(id: start_id, week: week, training_plan_id: 5).reject { |k,v| v.blank? }
-  Entry.seed(:id, seeds)
 end

@@ -17,10 +17,12 @@ require 'rails_helper'
 RSpec.describe TrainingPlan, :type => :model do
 end
 
-RSpec.describe TrainingPlan::Friel, :type => :model do
+RSpec.describe TrainingPlan::Friel do
   subject(:periodization) { TrainingPlan::Friel.new }
 
   it { expect(periodization.peak_week).to eq 27 }
+
+  it { expect(periodization.weeks.size).to eq 27 }
 
   describe "#period_name" do
     it { expect(periodization.period_name(0)).to eq "Prep" }
@@ -41,5 +43,18 @@ RSpec.describe TrainingPlan::Friel, :type => :model do
     it { expect(periodization.period_name(28)).to eq "Transition" }
     it { expect(periodization.period_name(32)).to eq "Transition" }
   end
+end
 
+RSpec.describe TrainingPlan::Friel::Period do
+  subject(:period) { described_class.new("Prep", (1..4)) }
+
+  it { expect(period.name).to eq "Prep" }
+  it { expect(period.range).to eq (1..4) }
+  it { expect(period.cover?(1)).to be true }
+  it { expect(period.cover?(4)).to be true }
+  it { expect(period.cover?(5)).to be false }
+  it { expect(period.mode(3)).to eq "Train" }
+  it { expect(period.mode(4)).to eq "Rest" }
+  it { expect(period.version(3)).to be_nil }
+  it { expect(described_class.new("Prep", (5..16)).version(11)).to eq 2 }
 end

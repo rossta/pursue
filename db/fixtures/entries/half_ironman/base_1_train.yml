@@ -1,0 +1,204 @@
+---
+- summary: Base train swim
+  day: Monday
+  distance:
+  duration: 0:20 - 0:30
+  period_name: base
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+  - recovery
+- summary: Base train strength
+  day: Monday
+  distance:
+  duration: "1:00"
+  period_name: base
+  discipline_name: strength
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+  - maximum-strength
+  - maximum-transition
+- summary: Base train swim
+  day: Tuesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: base
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base train bike
+  day: Tuesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Base train run
+  day: Tuesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: base
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base train bike
+  notes:
+  day: Wednesday
+  distance:
+  duration: 0:45 - 1:15
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base train run
+  day: Wednesday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: base
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base train strength
+  day: Wednesday
+  distance:
+  duration: "1:00"
+  period_name: base
+  discipline_name: strength
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+  - maximum-transition
+  - maximum-strength
+- summary: Base train swim
+  day: Thursday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: base
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base train run
+  day: Thursday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: base
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base train swim
+  day: Friday
+  distance:
+  duration: 0:20 - 0:30
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Base train bike
+  day: Friday
+  distance:
+  duration: 0:45 - 1:15
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base train strength
+  day: Friday
+  distance:
+  duration: "1:00"
+  period_name: base
+  discipline_name: strength
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+  - maximum-transition
+  - maximum-strength
+- summary: Base train swim
+  day: Saturday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: base
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Base train bike
+  day: Saturday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Base train run
+  day: Saturday
+  distance:
+  duration: 1:15 - 1:45
+  period_name: base
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  strength_ability_names:
+- summary: Base train bike
+  day: Sunday
+  distance:
+  duration: 2:00 - 3:00
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  strength_ability_names:
+- summary: Base train run
+  day: Sunday
+  distance:
+  duration: 0:15 - 0:30
+  period_name: base
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  strength_ability_names:

@@ -161,5 +161,4 @@ class TrainingPlan < ActiveRecord::Base
     end
 
   end
-
 end

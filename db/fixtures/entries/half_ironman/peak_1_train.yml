@@ -1,0 +1,184 @@
+---
+- summary: Peak train strength
+  day: Monday
+  distance:
+  duration: "0:45"
+  period_name: peak
+  discipline_name: strength
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+  - strength-maintenance
+- summary: Peak train swim
+  day: Tuesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: peak
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - aerobic-endurance
+  - muscular-endurance
+  strength_ability_names:
+- summary: Peak train run
+  day: Tuesday
+  distance:
+  duration: 1:00 - 1:15
+  period_name: peak
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  - muscular-endurance
+  strength_ability_names:
+- summary: Peak train swim
+  notes:
+  day: Wednesday
+  distance:
+  duration: 0:15 - 0:30
+  period_name: peak
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Peak train bike
+  notes:
+  day: Wednesday
+  distance:
+  duration: 1:00 - 1:30
+  period_name: peak
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - force
+  - muscular-endurance
+  strength_ability_names:
+- summary: Peak train swim
+  day: Thursday
+  distance:
+  duration: 0:20 - 0:30
+  period_name: peak
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Peak train bike
+  day: Thursday
+  distance:
+  duration: 1:00 - 1:30
+  period_name: peak
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Peak train run
+  day: Thursday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: peak
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Peak train swim
+  day: Friday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: peak
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - speed-skills
+  - force
+  - muscular-endurance
+  strength_ability_names:
+- summary: Peak train bike
+  notes: Brick 1, part 1
+  day: Friday
+  distance:
+  duration: "0:35"
+  period_name: peak
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+- summary: Peak train run
+  notes: Brick 1, part 2
+  day: Friday
+  distance:
+  duration: "1:05"
+  period_name: peak
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  strength_ability_names:
+- summary: Peak train swim
+  day: Saturday
+  distance:
+  duration: 0:20 - 0:30
+  period_name: peak
+  discipline_name: swim
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Peak train bike
+  day: Saturday
+  distance:
+  duration: 1:30 - 2:00
+  period_name: peak
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Peak train run
+  day: Saturday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: peak
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Peak train bike
+  day: Sunday
+  distance:
+  duration: 1:00 - 1:30
+  period_name: peak
+  discipline_name: bike
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:
+- summary: Peak train run
+  day: Sunday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: peak
+  discipline_name: run
+  zone_name:
+  mode_name: train
+  ability_names:
+  - recovery
+  strength_ability_names:

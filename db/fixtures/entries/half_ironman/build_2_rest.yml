@@ -1,0 +1,129 @@
+---
+- summary: Build rest strength
+  day: Monday
+  distance:
+  duration: "0:45"
+  period_name: build
+  discipline_name: strength
+  zone_name:
+  mode_name: rest
+  ability_names:
+  strength_ability_names:
+  - strength-maintenance
+- summary: Build rest swim
+  day: Tuesday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: build
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Build rest run
+  day: Tuesday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: build
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Build rest bike
+  day: Wednesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: build
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Build rest swim
+  notes: or SS if race
+  day: Thursday
+  distance:
+  duration: 0:40 - 0:50
+  period_name: build
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  strength_ability_names:
+- summary: Build rest run
+  day: Thursday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: build
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Build rest bike
+  notes: or SS if race
+  day: Friday
+  distance:
+  duration: "1:00"
+  period_name: build
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  strength_ability_names:
+- summary: Build rest swim
+  notes: or Race
+  day: Saturday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: build
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  - muscular-endurance
+  strength_ability_names:
+- summary: Build rest run
+  notes: or Race or SS if race Sun
+  day: Saturday
+  distance:
+  duration: "1:30"
+  period_name: build
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  strength_ability_names:
+- summary: Build rest bike
+  notes: or Race or Rec if Sat race
+  day: Sunday
+  distance:
+  duration: "2:30"
+  period_name: build
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  strength_ability_names:
+- summary: Build rest run
+  notes: or no run if race Sat
+  day: Sunday
+  distance:
+  duration: "0:15"
+  period_name: build
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+    - muscular-endurance
+  strength_ability_names:

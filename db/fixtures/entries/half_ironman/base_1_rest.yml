@@ -1,0 +1,125 @@
+---
+- summary: Base rest strength
+  day: Monday
+  distance:
+  duration: "1:00"
+  period_name: base
+  discipline_name: strength
+  zone_name:
+  mode_name: rest
+  ability_names:
+  strength_ability_names:
+  - maximum-transition
+  - maximum-strength
+- summary: Base rest swim
+  day: Tuesday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: base
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base rest run
+  day: Tuesday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: base
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - aerobic-endurance
+  - speed-skills
+  strength_ability_names:
+- summary: Base rest bike
+  day: Wednesday
+  distance:
+  duration: 0:45 - 1:00
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base rest swim
+  day: Thursday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: base
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  strength_ability_names:
+- summary: Base rest run
+  day: Thursday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: base
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base rest bike
+  day: Friday
+  distance:
+  duration: "1:00"
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  - speed-skills
+  strength_ability_names:
+- summary: Base rest swim
+  day: Saturday
+  distance:
+  duration: 0:30 - 0:45
+  period_name: base
+  discipline_name: swim
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - speed-skills
+  strength_ability_names:
+- summary: Base rest run
+  day: Saturday
+  distance:
+  duration: 1:15 - 1:45
+  period_name: base
+  discipline_name: run
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - test
+  strength_ability_names:
+- summary: Base rest bike
+  day: Sunday
+  distance:
+  duration: 2:00 - 3:00
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+  - aerobic-endurance
+  strength_ability_names:
+- summary: Base rest run
+  day: Sunday
+  distance:
+  duration: "0:15"
+  period_name: base
+  discipline_name: bike
+  zone_name:
+  mode_name: rest
+  ability_names:
+    - speed-skills
+  strength_ability_names:
