@@ -45,6 +45,7 @@ module Pursue
     config.assets.paths << Rails.root.join('app', 'assets', 'components')
 
     config.assets.precompile += %w( vendor.js )
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf|otf)$/
 
   end
 end
