@@ -1,8 +1,8 @@
 <h1>Plan a Workout</h1>
 
-<p>Training Plan: <%= @training_plan.title %></p>
+<p><%= @entry_scope.class.name.humanize %>: <%= @entry_scope.title %></p>
 
-<%= simple_form_for @entry, url: [@training_plan, @entry] do |form| %>
+<%= simple_form_for @entry, url: [@entry_scope, @entry] do |form| %>
   <%= form.input :summary %>
   <%= form.input :week, min_max: :lookup %>
   <%= form.input :day, collection: Entry.day_names %>

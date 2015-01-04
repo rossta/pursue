@@ -1,16 +1,15 @@
 <% extra_main_classes 'dashboard', 'index-page' %>
 <h2 class="index-page--title">Welcome</h2>
 
-<div>Today
-  <hr>
-<ul class="">
-  <% @dashboard.entries_today.each do |entry| %>
-    <li>
-      <%= entry.summary %>
-      <%= entry.notes %>
-    </li>
-  <% end %>
-  </ul>
+<div>
+  <h3>Today</h3>
+  <div class="entries today">
+    <%= render @dashboard.entries_today %>
+  </div>
+  <h3>Tomorrow</h3>
+  <div class="entries tomorrow">
+    <%= render @dashboard.entries_tomorrow %>
+  </div>
 </div>
 
 <ul class="large-block-grid-1">
@@ -22,5 +21,6 @@
   <% end %>
 </ul>
 
+<hr />
 <%= link_to "Start training", new_schedule_path, class: "small button success round" %>
 <%= link_to "Create new training plan", new_training_plan_path, class: "small button round" %>

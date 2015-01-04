@@ -19,13 +19,15 @@
 class Entry < ActiveRecord::Base
   include Concerns::Categorizable
 
-  belongs_to :schedulable, polymorphic: true
+  belongs_to :schedulable, polymorphic: true, inverse_of: :entries
 
-  belongs_to :schedule, foreign_key: :schedulable_id, class_name: "Schedule"
-  belongs_to :training_plan, foreign_key: :schedulable_id, class_name: "TrainingPlan"
+  belongs_to :schedule, -> { joins(:entries).merge(Entry.for_schedules) }, foreign_key: :schedulable_id
+  belongs_to :training_plan, -> { joins(:entries).merge(Entry.for_training_plans) }, foreign_key: :schedulable_id
 
   scope :today, -> { where(occurs_on: Date.today) }
   scope :tomorrow, -> { where(occurs_on: Date.tomorrow) }
+  scope :for_schedules, -> { where(schedulable_type: 'Schedule') }
+  scope :for_training_plans, -> { where(schedulable_type: 'TrainingPlan') }
 
   enum day: %w[ Monday Tuesday Wednesday Thursday Friday Saturday Sunday ]
 
@@ -45,8 +47,12 @@ class Entry < ActiveRecord::Base
     ability_names + strength_ability_names
   end
 
+  def secondary_category_names
+    combined_ability_names + [zone_name, mode_name].reject(&:blank?)
+  end
+
   def training_week
-    @training_week ||= TrainingWeek.new(number: week, period: training_plan.period(week))
+    @training_week ||= TrainingWeek.new(number: week, period: schedulable.period(week))
   end
 
   def self.day_names
@@ -54,11 +60,11 @@ class Entry < ActiveRecord::Base
   end
 
   def total_weeks
-    training_plan.total_weeks
+    schedulable.total_weeks
   end
 
   def title
-    [display_week, display_day].reject(&:blank?).join(' ')
+    [display_week, summary, display_day].reject(&:blank?).join(' ')
   end
 
   def display_day
@@ -86,6 +92,10 @@ class Entry < ActiveRecord::Base
     distance_unit.convert_to(unit_name)
   end
   alias :distance_in :distance_for_unit
+
+  def distance_for_discipline
+    distance_for_unit discipline_distance_unit
+  end
 
   def duration=(given_duration)
     self.duration_unit = given_duration
@@ -124,7 +134,38 @@ class Entry < ActiveRecord::Base
     Unit(extract_last_unit_value(value))
   end
 
+  def copyable_attributes
+    copyable_attribute_names.inject({}) { |attrs, name| attrs[name] = send(name); attrs }
+  end
+
+  private
+
   def extract_last_unit_value(value)
     value.split(%r{\s?-\s?}).last.strip
+  end
+
+  def copyable_attribute_names
+    %w[
+      summary
+      notes
+      week
+      day
+      discipline_name
+      mode_name
+      zone_name
+      period_name
+      distance
+      duration
+      ability_names
+      strength_ability_names
+    ]
+  end
+
+  def discipline_distance_unit
+    if discipline_tagging
+      discipline_tagging.distance_unit
+    else
+      'mi'
+    end
   end
 end

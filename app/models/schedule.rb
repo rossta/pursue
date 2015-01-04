@@ -29,8 +29,9 @@ class Schedule < ActiveRecord::Base
 
   # def duration
   # def peak_week
-  # def entries
-  delegate :peak_week, :duration, :entries, to: :training_plan, allow_nil: true
+  # def total_weeks
+  # def period
+  delegate :peak_week, :duration, :total_weeks, :period, to: :training_plan, allow_nil: true
 
   def weeks
     training_plan.weeks_following(starts_on)
@@ -42,10 +43,6 @@ class Schedule < ActiveRecord::Base
 
   def training_plan
     super || NullTrainingPlan.instance
-  end
-
-  def copyable_attributes
-    attributes.slice(*copyable_attribute_names)
   end
 
   private
@@ -81,28 +78,12 @@ class Schedule < ActiveRecord::Base
     self.entries = []
     self.training_plan.entries.each do |entry|
       occurs_on = entry.date_relative_to(self.starts_on)
-      self.entries << Entry.create(copyable_attributes.merge(occurs_on: occurs_on))
+      self.entries.create(entry.copyable_attributes.merge(occurs_on: occurs_on))
     end
   end
 
   def should_set_entry_dates?
     self.starts_on_changed? && self.training_plan.exists?
-  end
-
-  def copyable_attribute_names
-    [
-      :summary,
-      :notes,
-      :week,
-      :day,
-      :discipline_name,
-      :zone_name,
-      :period_name,
-      :distance,
-      :duration,
-      :ability_names,
-      :strength_ability_names
-    ]
   end
 
 end

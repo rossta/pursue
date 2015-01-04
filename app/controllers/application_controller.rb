@@ -11,4 +11,13 @@ class ApplicationController < ActionController::Base
     current_user.persisted?
   end
 
+  def after_sign_in_path(resource)
+    case resource
+    when User
+      dashboard_path
+    else
+      supe
+    end
+  end
+
 end

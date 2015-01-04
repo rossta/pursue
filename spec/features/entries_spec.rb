@@ -25,7 +25,7 @@ RSpec.feature 'Workout Plan' do
 
       click_button 'Go'
 
-      expect(page).to have_content('Run')
+      expect(page).to have_content('run')
       expect(page).to have_content('5 miles easy')
       expect(page).to have_content('Effort should be really light.')
 

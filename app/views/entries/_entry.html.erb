@@ -1,16 +1,16 @@
+<% week ||= entry.training_week %>
 <section id="<%= dom_id(entry) %>" class="<%= dom_class(entry) %> row">
-  <div class="columns large-2 small-6">
+  <div class="columns large-6 small-6">
     <% if week.has_dates? %>
       <%= l week.day_date(entry.day), format: :short %>
     <% else %>
       <%= entry.display_day %>
     <% end %>
-  </div>
-  <div class="columns large-2 small-6">
-    <%= link_to entry.discipline_name.to_s.titleize, [@entry_scope, entry] %>
-  </div>
-  <div class="columns large-8 small-12">
-    <p><i><%= entry.summary %></i></p>
+    <p><i><%= link_to entry.summary, [entry.schedulable, entry]%></i></p>
     <p><%= entry.notes %></p>
+  </div>
+  <div class="columns large-6 small-6">
+    <p data-role="requirements"><%= render 'entries/requirements', entry: entry %></p>
+    <p date-role="categories"><%= render 'entries/categories', entry: entry %> </p>
   </div>
 </section>

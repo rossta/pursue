@@ -1,12 +1,8 @@
-<h1><%= @entry.title %></h1>
+<h2><%= @entry.display_day %> <small><%= @entry.display_week %></small></h2>
 
-<p data-role="discipline"><%= @entry.discipline_name.titleize %></p>
-<p data-role="abilities"><%= @entry.combined_ability_names.map(&:titleize).join(', ') %></p>
-<p data-role="duration"><%= @entry.duration_for_unit('min') %></p>
-<p data-role="distance"><%= @entry.distance_for_unit('mi') %></p>
-<p data-role="summary"><%= @entry.summary %></p>
-<p data-role="notes"><%= @entry.notes %></p>
+<p data-role="summary"><strong><%= @entry.summary %></strong></p>
+<p data-role="requirements"><%= render 'requirements', entry: @entry %></p>
+<p data-role="notes">Notes:<br/><%= @entry.notes %></p>
+<p data-role="categories"><%= render 'categories', entry: @entry %> </p>
 
-<% week = @entry.training_week %>
-<p><%= link_to week.title, training_plan_week_path(@training_plan, week) %></p>
-<p><%= link_to "Edit workout", [:edit, @training_plan, @entry], class: "button round small" %></p>
+<p><%= link_to "Edit workout", [:edit, @entry.schedulable, @entry], class: "button round small" %></p>

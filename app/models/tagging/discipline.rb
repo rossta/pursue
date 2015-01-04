@@ -15,4 +15,13 @@
 
 class Tagging::Discipline < Tagging
   default_scope { where(context: 'discipline') }
+
+  def distance_unit
+    case tag.name
+    when "bike", "run"
+      'mi'
+    when "swim"
+      'yards'
+    end
+  end
 end

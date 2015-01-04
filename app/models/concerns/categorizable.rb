@@ -14,6 +14,8 @@ module Concerns
         delegate :name, to: tag_name, allow_nil: true, prefix: true
 
         define_method("#{tag_name}_name=") do |value|
+          return if value.blank?
+
           self.send("#{tag_name}=", Tag.find_by(name: self.class.normalize_category_name(value)))
         end
       end
