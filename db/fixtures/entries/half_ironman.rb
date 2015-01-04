@@ -1,4 +1,4 @@
-start_id = 1
+start_id = 0
 periodization = TrainingPlan::Friel.new
 
 periodization.each do |week|
@@ -12,8 +12,8 @@ periodization.each do |week|
     next
   end
 
-  YAML.load_file(file).each_with_index do |attrs, i|
-    start_id += i
+  YAML.load_file(file).each do |attrs|
+    start_id += 1
     seeds = attrs.merge(
 
       id: start_id,
