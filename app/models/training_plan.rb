@@ -22,7 +22,7 @@ class TrainingPlan < ActiveRecord::Base
   has_many :entries
 
   def total_weeks
-    read_attribute(:total_weeks) || 36
+    read_attribute(:total_weeks) || 27
   end
 
   def peak_week
@@ -39,8 +39,9 @@ class TrainingPlan < ActiveRecord::Base
 
   def weeks_following(start_date)
     TrainingWeek.following(start_date, total_weeks) do |w, i|
-      w.number = i + 1
-      w.title = periodized_week_title(w)
+      number = i + 1
+      w.number = number
+      w.period = periodization.period(number)
     end
   end
 
@@ -48,9 +49,8 @@ class TrainingPlan < ActiveRecord::Base
     weeks[number.to_i-1]
   end
 
-  def periodized_week_title(week)
-    period = periodization.period_name(week.number) || "Prep"
-    "#{period}: #{week.title}"
+  def period(week_number)
+    periodization.period(week_number)
   end
 
   def starts_on(peaks_on)
@@ -74,69 +74,14 @@ class TrainingPlan < ActiveRecord::Base
 
     DEFAULT_PEAK_WEEK = 27
 
-    class Period
-      attr_reader :name, :range, :cover
-
-      def initialize(name, range, cover = nil)
-        @name, @range, @cover = name, range, cover
-      end
-
-      def to_s
-        "<#{self.class} \nname=#{name}>"
-      end
-      alias inspect to_s
-
-      def cover?(remaining_weeks)
-        if @cover
-          instance_exec remaining_weeks, &cover
-        else
-          @range.cover?(remaining_weeks)
-        end
-      end
-
-      def mode(week)
-        return "Train" unless range.size >= 4
-        week % 4 == 0 ? "Rest" : "Train"
-      end
-
-      def version(week)
-        return nil unless range.size > 4
-        return nil unless range.cover?(week)
-        diff = week - range.first
-        ((diff / 4)+1).to_i
-      end
-    end
-
     PERIODS = [
-      Period.new("Transition", (28...30), ->(i) { i >= range.first }),
-      Period.new("Race",       (27..27)),
-      Period.new("Peak",       (25..26)),
-      Period.new("Build",      (17..24)),
-      Period.new("Base" ,      (5..16)),
-      Period.new("Prep" ,      (1..4), -> (i) { i <= range.last })
+      Period.new("Prep" ,      1..4,    cover: -> (i) { i <= range.last } ),
+      Period.new("Base" ,      5..16,   chunks: 3                         ),
+      Period.new("Build",      17..24,  chunks: 2                         ),
+      Period.new("Peak",       25..26,  chunks: 2                         ),
+      Period.new("Race",       27..27                                     ),
+      Period.new("Transition", 28...30, cover: ->(i) { i >= range.first } )
     ]
-
-    PeriodWeek = Struct.new(:number, :period) do
-      def to_a
-        [number, name, version, mode].map(&:to_s).reject(&:blank?)
-      end
-
-      def to_s
-        "<#{self.class}:#{to_a.inspect} \nperiod=#{period}\nnumber=#{number}>"
-      end
-
-      def name
-        period.name
-      end
-
-      def mode
-        period.mode(number)
-      end
-
-      def version
-        period.version(number)
-      end
-    end
 
     attr_reader :peak_week
 
@@ -149,7 +94,9 @@ class TrainingPlan < ActiveRecord::Base
     end
 
     def weeks
-      @weeks ||= 1.upto(peak_week).map { |i| PeriodWeek.new(i, period(i)) }
+      @weeks ||= 1.upto(peak_week).map do |number|
+        TrainingWeek.new(number: number, period: period(number))
+      end
     end
 
     def period(week_number)

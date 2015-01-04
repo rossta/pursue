@@ -40,7 +40,7 @@ class Entry < ActiveRecord::Base
   end
 
   def training_week
-    @training_week ||= TrainingWeek.new(number: week)
+    @training_week ||= TrainingWeek.new(number: week, period: training_plan.period(week))
   end
 
   def self.day_names

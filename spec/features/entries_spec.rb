@@ -48,7 +48,7 @@ RSpec.feature 'Workout Plan' do
 
       visit training_plan_path(training_plan)
 
-      click_link "Prep: Week 1"
+      click_link "Week 1 Prep Train"
 
       expect(page).to have_content("Swim")
       expect(page).to have_content("Bike")
