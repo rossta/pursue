@@ -50,6 +50,7 @@ class Tag < ActiveRecord::Base
     muscular-endurance
     anaerobic-endurance
     power
+    recovery
     test
   ]
 

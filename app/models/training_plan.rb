@@ -49,20 +49,8 @@ class TrainingPlan < ActiveRecord::Base
   end
 
   def periodized_week_title(week)
-    period = period_name(week.number) || "Prep"
+    period = periodization.period_name(week.number) || "Prep"
     "#{period}: #{week.title}"
-  end
-
-  def period_name(week_number)
-    remaining = peak_week - week_number
-    case
-    when remaining < 0  then "Transition"
-    when remaining == 0 then "Race"
-    when remaining < 3  then "Peak"
-    when remaining < 11 then "Build"
-    when remaining < 23 then "Base"
-    else "Prep"
-    end
   end
 
   def starts_on(peaks_on)
@@ -76,4 +64,102 @@ class TrainingPlan < ActiveRecord::Base
   def exists?
     persisted?
   end
+
+  def periodization
+    @periodization ||= Friel.new(peak_week)
+  end
+
+  class Friel
+    include Enumerable
+
+    DEFAULT_PEAK_WEEK = 27
+
+    class Period
+      attr_reader :name, :range, :cover
+
+      def initialize(name, range, cover = nil)
+        @name, @range, @cover = name, range, cover
+      end
+
+      def to_s
+        "<#{self.class} \nname=#{name}>"
+      end
+      alias inspect to_s
+
+      def cover?(remaining_weeks)
+        if @cover
+          instance_exec remaining_weeks, &cover
+        else
+          @range.cover?(remaining_weeks)
+        end
+      end
+
+      def mode(week)
+        return "Train" unless range.size >= 4
+        week % 4 == 0 ? "Rest" : "Train"
+      end
+
+      def version(week)
+        return nil unless range.size > 4
+        return nil unless range.cover?(week)
+        diff = week - range.first
+        ((diff / 4)+1).to_i
+      end
+    end
+
+    PERIODS = [
+      Period.new("Transition", (28...30), ->(i) { i >= range.first }),
+      Period.new("Race",       (27..27)),
+      Period.new("Peak",       (25..26)),
+      Period.new("Build",      (17..24)),
+      Period.new("Base" ,      (5..16)),
+      Period.new("Prep" ,      (1..4), -> (i) { i <= range.last })
+    ]
+
+    PeriodWeek = Struct.new(:number, :period) do
+      def to_a
+        [number, name, version, mode].map(&:to_s).reject(&:blank?)
+      end
+
+      def to_s
+        "<#{self.class}:#{to_a.inspect} \nperiod=#{period}\nnumber=#{number}>"
+      end
+
+      def name
+        period.name
+      end
+
+      def mode
+        period.mode(number)
+      end
+
+      def version
+        period.version(number)
+      end
+    end
+
+    attr_reader :peak_week
+
+    def initialize(peak_week = DEFAULT_PEAK_WEEK)
+      @peak_week = peak_week
+    end
+
+    def each(&block)
+      weeks.each(&block)
+    end
+
+    def weeks
+      @weeks ||= 1.upto(peak_week).map { |i| PeriodWeek.new(i, period(i)) }
+    end
+
+    def period(week_number)
+      PERIODS.find { |period| period.cover?(week_number) }
+    end
+
+    def period_name(week_number)
+      period(week_number).name
+    end
+
+  end
+
 end
