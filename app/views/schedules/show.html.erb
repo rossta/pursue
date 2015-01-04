@@ -1,7 +1,7 @@
 <h1>Schedule</h1>
 <h2><%= @schedule.title %></h2>
 
-<p>Training plan <%= @schedule.training_plan.title %></p>
+<p>Training plan <%= link_to @schedule.training_plan.title, @schedule.training_plan %></p>
 <p>Starts on <%= l @schedule.starts_on, format: :short %></p>
 <p>Peaks on <%= l @schedule.peaks_on, format: :short %></p>
 <p>Ends on <%= l @schedule.ends_on, format: :short %></p>
