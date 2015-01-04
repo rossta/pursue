@@ -1,5 +1,5 @@
 start_id = 0
-periodization = TrainingPlan::Friel.new
+periodization = Periodization::Friel.new
 
 periodization.each do |week|
   basename = week.to_a # number, name, chunk, mode
