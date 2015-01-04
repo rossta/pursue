@@ -15,9 +15,12 @@ periodization.each do |week|
   YAML.load_file(file).each_with_index do |attrs, i|
     start_id += i
     seeds = attrs.merge(
+
       id: start_id,
       week: week.number,
-      training_plan_id: 1
+      schedulable_id: 1,
+      schedulable_type: 'TrainingPlan'
+
     ).reject { |k,v| v.blank? }
 
     Entry.seed(:id, seeds)

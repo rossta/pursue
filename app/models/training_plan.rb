@@ -19,7 +19,7 @@ class TrainingPlan < ActiveRecord::Base
 
   belongs_to :creator, class_name: 'User'
 
-  has_many :entries
+  has_many :entries, as: :schedulable, dependent: :destroy
 
   def total_weeks
     read_attribute(:total_weeks) || 27

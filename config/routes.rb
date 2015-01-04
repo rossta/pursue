@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     get 'week/:week/day/:day', to: 'entries#index', as: :week_day
   end
 
-  resources :schedules, concerns: :calendar
+  resources :schedules, concerns: :calendar do
+    resources :entries, path: 'workouts'
+  end
 
   resources :training_plans, concerns: :calendar, path: 'training-plans' do
     resources :entries, path: 'workouts'

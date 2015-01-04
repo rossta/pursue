@@ -5,10 +5,10 @@ class EntriesController < ApplicationController
 
   def index
     @entries = scope
-    @title = @entry_context.title
+    @title = @entry_scope.title
     if index_params.any?
       @entries = @entries.where(index_params)
-      @week    = @entry_context.week_number(index_params[:week])
+      @week    = @entry_scope.week_number(index_params[:week])
       @title   += ": #{@week.title}"
     end
     @entries = @entries.order(week: :asc, day: :asc)
@@ -50,11 +50,11 @@ class EntriesController < ApplicationController
   private
 
   def scope
-    @entry_context = entry_context
-    @entry_context.entries
+    @entry_scope = entry_scope
+    @entry_scope.entries
   end
 
-  def entry_context
+  def entry_scope
     case
     when params[:training_plan_id]
       @training_plan = TrainingPlan.find(params[:training_plan_id])

@@ -7,7 +7,7 @@
     <% end %>
   </div>
   <div class="columns large-2 small-6">
-    <%= entry.discipline_name.to_s.titleize %>
+    <%= link_to entry.discipline_name.to_s.titleize, [@entry_scope, entry] %>
   </div>
   <div class="columns large-8 small-12">
     <p><i><%= entry.summary %></i></p>

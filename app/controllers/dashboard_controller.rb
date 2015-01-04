@@ -11,15 +11,15 @@ class DashboardController < ApplicationController
     end
 
     def entries
-      @entries ||= Entry.joins(:schedule_entries => :schedule).merge(@user.schedules)
+      @entries ||= Entry.joins(:schedule).merge(@user.schedules)
     end
 
     def entries_today
-      entries.merge(ScheduleEntry.today)
+      entries.today
     end
 
     def entries_tomorrow
-      entries.merge(ScheduleEntry.tomorrow)
+      entries.tomorrow
     end
   end
 end

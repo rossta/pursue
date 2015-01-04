@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012154735) do
+ActiveRecord::Schema.define(version: 20150104153430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,16 @@ ActiveRecord::Schema.define(version: 20141012154735) do
     t.text     "notes"
     t.integer  "day"
     t.integer  "week"
-    t.integer  "training_plan_id",                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "distance",                     default: "0 m"
     t.string   "duration",                     default: "0 s"
+    t.date     "occurs_on"
+    t.integer  "schedulable_id"
+    t.string   "schedulable_type"
   end
 
-  add_index "entries", ["training_plan_id"], name: "index_entries_on_training_plan_id", using: :btree
+  add_index "entries", ["schedulable_type", "schedulable_id"], name: "index_entries_on_schedulable_type_and_schedulable_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -36,17 +38,6 @@ ActiveRecord::Schema.define(version: 20141012154735) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "schedule_entries", force: :cascade do |t|
-    t.integer  "schedule_id"
-    t.integer  "entry_id"
-    t.date     "occurs_on"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "schedule_entries", ["entry_id"], name: "index_schedule_entries_on_entry_id", using: :btree
-  add_index "schedule_entries", ["schedule_id"], name: "index_schedule_entries_on_schedule_id", using: :btree
 
   create_table "schedules", force: :cascade do |t|
     t.string   "title",            limit: 255

@@ -23,8 +23,7 @@ class Schedule < ActiveRecord::Base
   before_save :set_dates
   after_save :set_entry_dates, if: :should_set_entry_dates?
 
-  has_many :schedule_entries, dependent: :destroy
-  has_many :entries, through: :schedule_entries
+  has_many :entries, as: :schedulable, dependent: :destroy
 
   scope :active, -> { where("ends_on >= ?", Date.today) }
 
@@ -43,6 +42,10 @@ class Schedule < ActiveRecord::Base
 
   def training_plan
     super || NullTrainingPlan.instance
+  end
+
+  def copyable_attributes
+    attributes.slice(*copyable_attribute_names)
   end
 
   private
@@ -75,17 +78,31 @@ class Schedule < ActiveRecord::Base
   def set_entry_dates
     raise "Cannot set entry dates without schedule start date" unless self.starts_on
 
-    self.schedule_entries = []
+    self.entries = []
     self.training_plan.entries.each do |entry|
-      self.schedule_entries.create do |ed|
-        ed.entry = entry
-        ed.occurs_on = entry.date_relative_to(self.starts_on)
-      end
+      occurs_on = entry.date_relative_to(self.starts_on)
+      self.entries << Entry.create(copyable_attributes.merge(occurs_on: occurs_on))
     end
   end
 
   def should_set_entry_dates?
     self.starts_on_changed? && self.training_plan.exists?
+  end
+
+  def copyable_attribute_names
+    [
+      :summary,
+      :notes,
+      :week,
+      :day,
+      :discipline_name,
+      :zone_name,
+      :period_name,
+      :distance,
+      :duration,
+      :ability_names,
+      :strength_ability_names
+    ]
   end
 
 end

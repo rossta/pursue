@@ -7,11 +7,13 @@
 #  notes            :text
 #  day              :integer
 #  week             :integer
-#  training_plan_id :integer          not null
 #  created_at       :datetime
 #  updated_at       :datetime
 #  distance         :string           default("0 m")
 #  duration         :string           default("0 s")
+#  occurs_on        :date
+#  schedulable_id   :integer
+#  schedulable_type :string
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl

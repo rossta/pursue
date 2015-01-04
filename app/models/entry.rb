@@ -7,19 +7,25 @@
 #  notes            :text
 #  day              :integer
 #  week             :integer
-#  training_plan_id :integer          not null
 #  created_at       :datetime
 #  updated_at       :datetime
 #  distance         :string           default("0 m")
 #  duration         :string           default("0 s")
+#  occurs_on        :date
+#  schedulable_id   :integer
+#  schedulable_type :string
 #
 
 class Entry < ActiveRecord::Base
   include Concerns::Categorizable
 
-  belongs_to :training_plan
+  belongs_to :schedulable, polymorphic: true
 
-  has_many :schedule_entries
+  belongs_to :schedule, foreign_key: :schedulable_id, class_name: "Schedule"
+  belongs_to :training_plan, foreign_key: :schedulable_id, class_name: "TrainingPlan"
+
+  scope :today, -> { where(occurs_on: Date.today) }
+  scope :tomorrow, -> { where(occurs_on: Date.tomorrow) }
 
   enum day: %w[ Monday Tuesday Wednesday Thursday Friday Saturday Sunday ]
 
