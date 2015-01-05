@@ -24,8 +24,8 @@ class Entry < ActiveRecord::Base
   belongs_to :schedule, -> { joins(:entries).merge(Entry.for_schedules) }, foreign_key: :schedulable_id
   belongs_to :training_plan, -> { joins(:entries).merge(Entry.for_training_plans) }, foreign_key: :schedulable_id
 
-  scope :today, -> { where(occurs_on: Date.today) }
-  scope :tomorrow, -> { where(occurs_on: Date.tomorrow) }
+  scope :today, -> { where(occurs_on: Time.zone.today.to_date ) }
+  scope :tomorrow, -> { where(occurs_on: Time.zone.tomorrow.to_date ) }
   scope :for_schedules, -> { where(schedulable_type: 'Schedule') }
   scope :for_training_plans, -> { where(schedulable_type: 'TrainingPlan') }
 

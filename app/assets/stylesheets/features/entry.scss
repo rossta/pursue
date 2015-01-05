@@ -1,6 +1,20 @@
 .entries {
-  .entry {
-    border-bottom: 1px solid #CCC;
-    margin-bottom: 1rem;
+  margin-bottom: 1em;
+}
+
+.entry {
+  border-bottom: 1px solid #CCC;
+  margin-bottom: 1rem;
+
+  &.row {
+    padding: 1em 0;
+  }
+
+  p {
+    margin-bottom: 1em;
+
+    &[data-role="notes"] {
+      color: #777;
+    }
   }
 }

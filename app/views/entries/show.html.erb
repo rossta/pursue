@@ -1,8 +1,17 @@
-<h2><%= @entry.display_day %> <small><%= @entry.display_week %></small></h2>
+<div class="entry">
+  <h2><%= @entry.display_day %> <small><%= @entry.display_week %></small></h2>
 
-<p data-role="summary"><strong><%= @entry.summary %></strong></p>
-<p data-role="requirements"><%= render 'requirements', entry: @entry %></p>
-<p data-role="notes">Notes:<br/><%= @entry.notes %></p>
-<p data-role="categories"><%= render 'categories', entry: @entry %> </p>
+  <p data-role="summary"><strong><%= @entry.summary %></strong></p>
+  <p data-role="requirements"><%= render 'requirements', entry: @entry %></p>
+  <p data-role="notes">Notes:<br/>
+    <%= @entry.duration %><br/>
+    <%= @entry.notes %>
+  </p>
+  <p data-role="categories"><%= render 'categories', entry: @entry %> </p>
 
-<p><%= link_to "Edit workout", [:edit, @entry.schedulable, @entry], class: "button round small" %></p>
+  <p>
+    <%= link_to @entry.schedulable_type.humanize, @entry.schedulable %>
+    <span> | </span>
+    <%= link_to "Edit workout", [:edit, @entry.schedulable, @entry] %>
+  </p>
+</div>
