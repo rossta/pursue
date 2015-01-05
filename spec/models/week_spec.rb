@@ -11,7 +11,7 @@ RSpec.describe Week do
   end
 
   describe "#starts_on" do
-    let(:date) { 1.week.from_now.beginning_of_week }
+    let(:date) { 1.week.from_now.beginning_of_week.to_date }
     let(:week) { Week.new(number: 1, starts_on: date) }
 
     it { expect(week.starts_on).to eq(date) }
