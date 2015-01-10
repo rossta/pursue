@@ -7,5 +7,7 @@ class CreateTrainingPlans < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_foreign_key :training_plans, :users, column: :creator_id
   end
 end

@@ -23,7 +23,11 @@ Rails.application.routes.draw do
 
   get 'accounts/start', to: redirect('start')
 
-  devise_for :users, skip: [:sessions], path: 'accounts', path_names: { sign_up: 'start' }
+  devise_for :users,
+    skip: [:sessions],
+    path: 'accounts',
+    path_names: { sign_up: 'start' },
+    controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   as :user do
     get 'resume' => 'devise/sessions#new', :as => :new_user_session
     post 'resume' => 'devise/sessions#create', :as => :user_session
@@ -32,4 +36,5 @@ Rails.application.routes.draw do
 
     get 'start' => 'devise/registrations#new', :as => :sign_up
   end
+
 end
