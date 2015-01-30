@@ -47,7 +47,7 @@ describe GravatarImageTag do
       it "#gravatar_image_tag should create the provided url with the provided options #{options}" do
         image_tag = view.gravatar_image_tag(email, options)
         expect(image_tag).to include("#{params.delete(:gravatar_id)}")
-        params.each {|key, value| expect(image_tag).to include("#{key}=#{value}")}
+        params.each { |key, value| expect(image_tag).to include("#{key}=#{value}") }
       end
     end
 
@@ -61,7 +61,7 @@ describe GravatarImageTag do
       it "#gravatar_image_tag #{params} should create the provided url when defaults have been set with the provided options #{options}" do
         image_tag = view.gravatar_image_tag(email, options)
         expect(image_tag).to include("#{params.delete(:gravatar_id)}.#{default_filetype}")
-        params.each {|key, value| expect(image_tag).to include("#{key}=#{value}")}
+        params.each { |key, value| expect(image_tag).to include("#{key}=#{value}") }
       end
     end
 

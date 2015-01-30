@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     when User
       dashboard_path
     else
-      supe
+      super
     end
   end
 
