@@ -23,7 +23,7 @@ RSpec.feature 'Training Plans' do
       fill_form :training_plan, {
         title: 'Your Best Half Ironman',
         summary: '36 weeks to your best HIM',
-        discipline: 'half-ironman'
+        distance: 'half-ironman'
       }
 
       click_button 'Go'

@@ -26,9 +26,24 @@ class TrainingPlansController < ApplicationController
     @training_plans = TrainingPlan.all
   end
 
+  def edit
+    @training_plan = TrainingPlan.find(params[:id])
+  end
+
+  def update
+    @training_plan = TrainingPlan.find(params[:id])
+    @training_plan.attributes = training_plan_params
+
+    if @training_plan.save
+      redirect_to @training_plan, notice: "Success!"
+    else
+      render :edit
+    end
+  end
+
   private
 
   def training_plan_params
-    params.require(:training_plan).permit(:title, :summary)
+    params.require(:training_plan).permit(:title, :summary, :thumbnail, :distance_name)
   end
 end

@@ -1,0 +1,7 @@
+<%= simple_form_for @training_plan do |form| %>
+  <%= form.input :distance_name, label: 'Distance' %>
+  <%= form.input :title %>
+  <%= form.input :summary %>
+  <%= form.attachment_field :thumbnail %>
+  <%= form.submit 'Go', class: 'button' %>
+<% end %>

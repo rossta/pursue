@@ -2,6 +2,8 @@
 
 <p><%= @training_plan.summary %></p>
 
+<p><%= image_tag attachment_url(@training_plan, :thumbnail, :fill, 300, 300, filename: 'thumbnail.jpg') %></p>
+
 <%= link_to 'Add workout', new_training_plan_entry_path(@training_plan), class: 'button round small' %>
 
 <h5>Overview</h5>

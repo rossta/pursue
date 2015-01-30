@@ -15,11 +15,13 @@
 class TrainingPlan < ActiveRecord::Base
   include Concerns::Categorizable
 
-  has_one_category :discipline
+  has_one_category :distance
 
   belongs_to :creator, class_name: 'User'
 
   has_many :entries, as: :schedulable, dependent: :destroy
+
+  attachment :thumbnail
 
   def total_weeks
     read_attribute(:total_weeks) || 27

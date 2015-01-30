@@ -1,9 +1,3 @@
 <h1>Build a training plan</h1>
 
-<%= simple_form_for @training_plan do |form| %>
-  <%= form.input :discipline_name, label: 'Discipline' %>
-  <%= form.input :title %>
-  <%= form.input :summary %>
-  <%= form.submit 'Go', class: 'button' %>
-<% end %>
-
+<%= render 'form' %>
